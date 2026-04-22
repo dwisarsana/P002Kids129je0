@@ -6,7 +6,7 @@ import '../../theme/app_theme.dart';
 import '../../widgets/parallax_button.dart';
 import '../../widgets/glass_container.dart';
 import '../../mock/mock_data.dart';
-import '../../models/garden_model.dart';
+import '../../models/kids_room_model.dart';
 import '../../services/storage_service.dart';
 import '../account/history_screen.dart';
 import '../account/settings_screen.dart';
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _errorImg() => Container(
         color: AppTheme.charcoal.withValues(alpha: 0.1),
-        child: const Icon(Icons.broken_image_rounded, color: AppTheme.slate, size: 24),
+        child: Icon(Icons.broken_image_rounded, color: AppTheme.slate, size: 24),
       );
 
   @override
@@ -77,12 +77,12 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              title: const Text(
-                'Garden AI',
+              title: Text(
+                'Kids Room AI',
                 style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: 22,
-                  color: Colors.white,
+                  color: AppTheme.charcoal,
                   letterSpacing: 1.0,
                 ),
               ),
@@ -110,7 +110,7 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: GlassContainer(
                   padding: const EdgeInsets.all(24),
-                  color: Colors.white,
+                  color: AppTheme.charcoal,
                   opacity: 0.8,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,7 +140,7 @@ class HomeScreen extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.all(10),
                             decoration: const BoxDecoration(color: AppTheme.sunGlow, shape: BoxShape.circle),
-                            child: const Icon(Icons.wb_sunny_rounded, color: Colors.white, size: 20),
+                            child: Icon(Icons.wb_sunny_rounded, color: AppTheme.charcoal, size: 20),
                           ),
                         ],
                       ),
@@ -182,7 +182,7 @@ class HomeScreen extends StatelessWidget {
                   Text("Recent Visions", style: Theme.of(context).textTheme.titleLarge?.copyWith(color: AppTheme.mossGreen, fontWeight: FontWeight.w900, letterSpacing: -0.5)),
                   GestureDetector(
                     onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const HistoryScreen())),
-                    child: const Icon(Icons.arrow_forward_rounded, color: AppTheme.mossGreen),
+                    child: Icon(Icons.arrow_forward_rounded, color: AppTheme.mossGreen),
                   ),
                 ],
               ),
@@ -190,11 +190,11 @@ class HomeScreen extends StatelessWidget {
           ),
 
           SliverToBoxAdapter(
-            child: FutureBuilder<List<GardenModel>>(
-              future: context.read<StorageService>().loadGardens(),
+            child: FutureBuilder<List<KidsRoomModel>>(
+              future: context.read<StorageService>().loadkidsRooms(),
               builder: (context, snapshot) {
-                final gardens = snapshot.data ?? [];
-                if (gardens.isEmpty) return const SizedBox();
+                final kidsRooms = snapshot.data ?? [];
+                if (kidsRooms.isEmpty) return const SizedBox();
                 
                 return SizedBox(
                   height: 220,
@@ -202,11 +202,11 @@ class HomeScreen extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     physics: const BouncingScrollPhysics(),
-                    itemCount: gardens.length > 5 ? 5 : gardens.length,
+                    itemCount: kidsRooms.length > 5 ? 5 : kidsRooms.length,
                     itemBuilder: (context, index) {
-                      final garden = gardens[index];
+                      final kidsRoom = kidsRooms[index];
                       return _GlassProjectCard(
-                        garden: garden,
+                        kidsRoom: kidsRoom,
                         imageBuilder: _buildHistoryImage,
                         onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const HistoryScreen())),
                       ).animate().fadeIn(delay: (200 + index * 100).ms).slideX(begin: 0.2);
@@ -273,18 +273,18 @@ class _HeaderIconAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(icon, color: Colors.white, size: 24),
+      icon: Icon(icon, color: AppTheme.charcoal, size: 24),
       onPressed: onTap,
     );
   }
 }
 
 class _GlassProjectCard extends StatelessWidget {
-  final GardenModel garden;
+  final KidsRoomModel kidsRoom;
   final Widget Function(String) imageBuilder;
   final VoidCallback onTap;
 
-  const _GlassProjectCard({required this.garden, required this.imageBuilder, required this.onTap});
+  const _GlassProjectCard({required this.kidsRoom, required this.imageBuilder, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -298,7 +298,7 @@ class _GlassProjectCard extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              imageBuilder(garden.resultImagePath),
+              imageBuilder(kidsRoom.resultImagePath),
               Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -316,14 +316,14 @@ class _GlassProjectCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      garden.styleName,
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13),
+                      kidsRoom.styleName,
+                      style: TextStyle(color: AppTheme.charcoal, fontWeight: FontWeight.bold, fontSize: 13),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      "${garden.timestamp.day}/${garden.timestamp.month}",
-                      style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 10),
+                      "${kidsRoom.timestamp.day}/${kidsRoom.timestamp.month}",
+                      style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.6), fontSize: 10),
                     ),
                   ],
                 ),
@@ -349,7 +349,7 @@ class _FuturisticStyleCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: const BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(15), bottomLeft: Radius.circular(15), bottomRight: Radius.circular(30)),
           image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
           boxShadow: [
             BoxShadow(
@@ -361,7 +361,7 @@ class _FuturisticStyleCard extends StatelessWidget {
         ),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(15), bottomLeft: Radius.circular(15), bottomRight: Radius.circular(30)),
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -374,7 +374,7 @@ class _FuturisticStyleCard extends StatelessWidget {
             children: [
               Text(
                 name,
-                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 14, letterSpacing: 0.5),
+                style: TextStyle(color: AppTheme.charcoal, fontWeight: FontWeight.w900, fontSize: 14, letterSpacing: 0.5),
                 textAlign: TextAlign.center,
               ),
             ],

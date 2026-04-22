@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/garden_model.dart';
+import '../../models/kids_room_model.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
 
@@ -50,7 +50,7 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
-  late Future<List<GardenModel>> _gardensFuture;
+  late Future<List<KidsRoomModel>> _kidsRoomsFuture;
   _SortOption _sortOption = _SortOption.newest;
   bool _isSelecting = false;
   final Set<String> _selectedIds = {};
@@ -62,7 +62,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   void _loadData() {
-    _gardensFuture = context.read<StorageService>().loadGardens();
+    _kidsRoomsFuture = context.read<StorageService>().loadkidsRooms();
   }
 
   void _reload() {
@@ -73,7 +73,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
     });
   }
 
-  List<GardenModel> _sort(List<GardenModel> list) {
+  List<KidsRoomModel> _sort(List<KidsRoomModel> list) {
     final sorted = [...list];
     switch (_sortOption) {
       case _SortOption.newest:
@@ -103,20 +103,20 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   Widget _imgError() => Container(
         color: AppTheme.charcoal.withValues(alpha: 0.3),
-        child: const Center(
-          child: Icon(Icons.broken_image_rounded, color: Colors.white30, size: 32),
+        child: Center(
+          child: Icon(Icons.broken_image_rounded, color: AppTheme.charcoal.withValues(alpha: 0.3), size: 32),
         ),
       );
 
   // ── Delete selected ──────────────────────────────────────
-  Future<void> _deleteSelected(List<GardenModel> all) async {
+  Future<void> _deleteSelected(List<KidsRoomModel> all) async {
     final confirm = await _showDeleteDialog(
         context, '${_selectedIds.length} item(s)');
     if (!confirm) return;
 
     final storage = context.read<StorageService>();
     final remaining = all.where((g) => !_selectedIds.contains(g.id)).toList();
-    await storage.saveGardens(remaining);
+    await storage.savekidsRooms(remaining);
     _reload();
   }
 
@@ -126,20 +126,20 @@ class _HistoryScreenState extends State<HistoryScreen> {
           builder: (_) => AlertDialog(
             backgroundColor: AppTheme.charcoal,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            title: const Text('Delete Garden?',
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+            title: Text('Delete Kids Room?',
+                style: TextStyle(color: AppTheme.charcoal, fontWeight: FontWeight.w700)),
             content: Text(
               'Remove $label from your history? This cannot be undone.',
-              style: TextStyle(color: Colors.white.withValues(alpha: 0.7)),
+              style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.7)),
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(ctx, false),
-                child: const Text('Cancel', style: TextStyle(color: Colors.white60)),
+                child: Text('Cancel', style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.6))),
               ),
               TextButton(
                 onPressed: () => Navigator.pop(ctx, true),
-                child: const Text('Delete',
+                child: Text('Delete',
                     style: TextStyle(
                         color: Colors.redAccent, fontWeight: FontWeight.w700)),
               ),
@@ -169,11 +169,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
               height: 4,
               margin: const EdgeInsets.only(bottom: 20),
               decoration: BoxDecoration(
-                  color: Colors.white24, borderRadius: BorderRadius.circular(2)),
+                  color: AppTheme.charcoal.withValues(alpha: 0.24), borderRadius: BorderRadius.circular(2)),
             ),
-            const Text('Sort By',
+            Text('Sort By',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: AppTheme.charcoal,
                     fontWeight: FontWeight.w700,
                     fontSize: 18)),
             const SizedBox(height: 16),
@@ -190,7 +190,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   decoration: BoxDecoration(
                     color: selected
                         ? AppTheme.mossGreen.withValues(alpha: 0.2)
-                        : Colors.white.withValues(alpha: 0.05),
+                        : AppTheme.slate.withValues(alpha: 0.05),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
                       color: selected
@@ -201,12 +201,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   child: Row(
                     children: [
                       Icon(opt.icon,
-                          color: selected ? AppTheme.mintGreen : Colors.white54,
+                          color: selected ? AppTheme.mintGreen : AppTheme.slate,
                           size: 20),
                       const SizedBox(width: 12),
                       Text(opt.label,
                           style: TextStyle(
-                            color: selected ? AppTheme.mintGreen : Colors.white70,
+                            color: selected ? AppTheme.mintGreen : AppTheme.slate,
                             fontWeight: selected
                                 ? FontWeight.w700
                                 : FontWeight.w400,
@@ -214,7 +214,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           )),
                       const Spacer(),
                       if (selected)
-                        const Icon(Icons.check_rounded,
+                        Icon(Icons.check_rounded,
                             color: AppTheme.mintGreen, size: 18),
                     ],
                   ),
@@ -232,8 +232,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
     return Scaffold(
       backgroundColor: AppTheme.warmSand,
       body: SafeArea(
-        child: FutureBuilder<List<GardenModel>>(
-          future: _gardensFuture,
+        child: FutureBuilder<List<KidsRoomModel>>(
+          future: _kidsRoomsFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -263,7 +263,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         icon: Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: AppTheme.charcoal,
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
@@ -272,7 +272,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               ),
                             ],
                           ),
-                          child: const Icon(Icons.arrow_back_ios_new_rounded, color: AppTheme.charcoal, size: 18),
+                          child: Icon(Icons.arrow_back_ios_new_rounded, color: AppTheme.charcoal, size: 18),
                         ),
                         onPressed: () => Navigator.pop(context),
                       ),
@@ -281,7 +281,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Garden Timeline',
+                            Text('Kids Room Timeline',
                                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w900, color: AppTheme.mossGreen)),
                             Text(
                               '${all.length} transformation${all.length == 1 ? '' : 's'}',
@@ -297,7 +297,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         icon: Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: AppTheme.charcoal,
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
@@ -306,7 +306,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               ),
                             ],
                           ),
-                          child: const Icon(Icons.home_rounded, color: AppTheme.mossGreen, size: 20),
+                          child: Icon(Icons.home_rounded, color: AppTheme.mossGreen, size: 20),
                         ),
                         onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
                       ),
@@ -366,15 +366,15 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                 shape: BoxShape.circle,
                                 color: AppTheme.mossGreen.withValues(alpha: 0.08),
                               ),
-                              child: const Icon(Icons.eco_rounded,
+                              child: Icon(Icons.eco_rounded,
                                   size: 52, color: AppTheme.mintGreen),
                             ),
                             const SizedBox(height: 20),
-                            Text('No gardens yet',
+                            Text('No Kids Rooms yet',
                                 style: Theme.of(context).textTheme.titleMedium),
                             const SizedBox(height: 8),
                             Text(
-                              'Start creating your first garden transformation!',
+                              'Start creating your first Kids Room transformation!',
                               style: TextStyle(
                                   color: AppTheme.slate.withValues(alpha: 0.7),
                                   fontSize: 14),
@@ -393,11 +393,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
                       itemCount: all.length,
                       itemBuilder: (context, index) {
-                        final garden = all[index];
-                        final selected = _selectedIds.contains(garden.id);
+                        final kidsRoom = all[index];
+                        final selected = _selectedIds.contains(kidsRoom.id);
 
                         return _HistoryCard(
-                          garden: garden,
+                          kidsRoom: kidsRoom,
                           buildImage: _buildImage,
                           isSelecting: _isSelecting,
                           isSelected: selected,
@@ -405,13 +405,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             if (_isSelecting) {
                               setState(() {
                                 if (selected) {
-                                  _selectedIds.remove(garden.id);
+                                  _selectedIds.remove(kidsRoom.id);
                                 } else {
-                                  _selectedIds.add(garden.id);
+                                  _selectedIds.add(kidsRoom.id);
                                 }
                               });
                             } else {
-                              _openDetail(context, garden, all);
+                              _openDetail(context, kidsRoom, all);
                             }
                           },
                           onLongPress: () {
@@ -419,7 +419,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             if (!_isSelecting) {
                               setState(() {
                                 _isSelecting = true;
-                                _selectedIds.add(garden.id);
+                                _selectedIds.add(kidsRoom.id);
                               });
                             }
                           },
@@ -436,21 +436,21 @@ class _HistoryScreenState extends State<HistoryScreen> {
     );
   }
 
-  void _openDetail(BuildContext ctx, GardenModel garden, List<GardenModel> all) {
+  void _openDetail(BuildContext ctx, KidsRoomModel kidsRoom, List<KidsRoomModel> all) {
     showModalBottomSheet(
       context: ctx,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (_) => HistoryDetailSheet(
-        garden: garden,
+        kidsRoom: kidsRoom,
         buildImage: _buildImage,
         onDelete: () async {
           Navigator.pop(ctx);
-          final confirm = await _showDeleteDialog(ctx, 'this garden');
+          final confirm = await _showDeleteDialog(ctx, 'this Kids Room');
           if (!confirm) return;
           final storage = context.read<StorageService>();
-          final remaining = all.where((g) => g.id != garden.id).toList();
-          await storage.saveGardens(remaining);
+          final remaining = all.where((g) => g.id != kidsRoom.id).toList();
+          await storage.savekidsRooms(remaining);
           _reload();
         },
       ),
@@ -462,7 +462,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
 // History Card
 // ─────────────────────────────────────────────────────────
 class _HistoryCard extends StatelessWidget {
-  final GardenModel garden;
+  final KidsRoomModel kidsRoom;
   final Widget Function(String) buildImage;
   final bool isSelecting;
   final bool isSelected;
@@ -470,7 +470,7 @@ class _HistoryCard extends StatelessWidget {
   final VoidCallback onLongPress;
 
   const _HistoryCard({
-    required this.garden,
+    required this.kidsRoom,
     required this.buildImage,
     required this.isSelecting,
     required this.isSelected,
@@ -504,7 +504,7 @@ class _HistoryCard extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              buildImage(garden.resultImagePath),
+              buildImage(kidsRoom.resultImagePath),
               // Gradient
               Positioned(
                 bottom: 0,
@@ -537,9 +537,9 @@ class _HistoryCard extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            garden.styleName,
-                            style: const TextStyle(
-                              color: Colors.white,
+                            kidsRoom.styleName,
+                            style: TextStyle(
+                              color: AppTheme.charcoal,
                               fontWeight: FontWeight.w700,
                               fontSize: 17,
                             ),
@@ -548,15 +548,15 @@ class _HistoryCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            _formatDate(garden.timestamp),
-                            style: const TextStyle(
-                                color: Colors.white60, fontSize: 12),
+                            _formatDate(kidsRoom.timestamp),
+                            style: TextStyle(
+                                color: AppTheme.charcoal.withValues(alpha: 0.6), fontSize: 12),
                           ),
                         ],
                       ),
                     ),
-                    if (garden.isFavorite)
-                      const Icon(Icons.favorite_rounded,
+                    if (kidsRoom.isFavorite)
+                      Icon(Icons.favorite_rounded,
                           color: Colors.redAccent, size: 18),
                   ],
                 ),
@@ -576,13 +576,13 @@ class _HistoryCard extends StatelessWidget {
                           : Colors.black.withValues(alpha: 0.4),
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: isSelected ? AppTheme.mossGreen : Colors.white54,
+                        color: isSelected ? AppTheme.mossGreen : AppTheme.slate,
                         width: 2,
                       ),
                     ),
                     child: isSelected
-                        ? const Icon(Icons.check_rounded,
-                            color: Colors.white, size: 16)
+                        ? Icon(Icons.check_rounded,
+                            color: AppTheme.charcoal, size: 16)
                         : null,
                   ),
                 ),
@@ -606,13 +606,13 @@ class _HistoryCard extends StatelessWidget {
 // History Detail Bottom Sheet
 // ─────────────────────────────────────────────────────────
 class HistoryDetailSheet extends StatefulWidget {
-  final GardenModel garden;
+  final KidsRoomModel kidsRoom;
   final Widget Function(String) buildImage;
   final VoidCallback onDelete;
 
   const HistoryDetailSheet({
     super.key,
-    required this.garden,
+    required this.kidsRoom,
     required this.buildImage,
     required this.onDelete,
   });
@@ -626,7 +626,7 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final g = widget.garden;
+    final g = widget.kidsRoom;
     final screenH = MediaQuery.of(context).size.height;
 
     return Container(
@@ -643,7 +643,7 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
             height: 4,
             margin: const EdgeInsets.symmetric(vertical: 12),
             decoration: BoxDecoration(
-                color: Colors.white24, borderRadius: BorderRadius.circular(2)),
+                color: AppTheme.charcoal.withValues(alpha: 0.24), borderRadius: BorderRadius.circular(2)),
           ),
 
           // Before/After Comparison
@@ -673,12 +673,12 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          Container(width: 2, color: Colors.white),
+                          Container(width: 2, color: AppTheme.charcoal),
                           Container(
                             width: 40,
                             height: 40,
                             decoration: const BoxDecoration(
-                              color: Colors.white,
+                              color: AppTheme.charcoal,
                               shape: BoxShape.circle,
                             ),
                             child: const Row(
@@ -723,21 +723,21 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(g.styleName,
-                              style: const TextStyle(
-                                  color: Colors.white,
+                              style: TextStyle(
+                                  color: AppTheme.charcoal,
                                   fontSize: 22,
                                   fontWeight: FontWeight.w800)),
                           const SizedBox(height: 4),
                           Text(
                             _formatDate(g.timestamp),
-                            style: const TextStyle(
-                                color: Colors.white54, fontSize: 13),
+                            style: TextStyle(
+                                color: AppTheme.charcoal.withValues(alpha: 0.54), fontSize: 13),
                           ),
                         ],
                       ),
                     ),
                     if (g.isFavorite)
-                      const Icon(Icons.favorite_rounded,
+                      Icon(Icons.favorite_rounded,
                           color: Colors.redAccent, size: 22),
                   ],
                 ),
@@ -780,16 +780,16 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       backgroundColor: isSuccess ? AppTheme.mossGreen : AppTheme.slate,
-      content: Text(msg, style: const TextStyle(fontWeight: FontWeight.w500)),
+      content: Text(msg, style: TextStyle(fontWeight: FontWeight.w500)),
     );
   }
 
-  void _openFullscreen(BuildContext ctx, GardenModel g) {
+  void _openFullscreen(BuildContext ctx, KidsRoomModel g) {
     Navigator.push(
       ctx,
       MaterialPageRoute(
         builder: (_) => _FullscreenView(
-          garden: g,
+          kidsRoom: g,
           buildImage: widget.buildImage,
         ),
       ),
@@ -810,10 +810,10 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
 // Full Screen View
 // ─────────────────────────────────────────────────────────
 class _FullscreenView extends StatefulWidget {
-  final GardenModel garden;
+  final KidsRoomModel kidsRoom;
   final Widget Function(String) buildImage;
 
-  const _FullscreenView({required this.garden, required this.buildImage});
+  const _FullscreenView({required this.kidsRoom, required this.buildImage});
 
   @override
   State<_FullscreenView> createState() => _FullscreenViewState();
@@ -837,10 +837,10 @@ class _FullscreenViewState extends State<_FullscreenView> {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            widget.buildImage(widget.garden.originalImagePath),
+            widget.buildImage(widget.kidsRoom.originalImagePath),
             ClipRect(
               clipper: _RightClipper(_sliderX),
-              child: widget.buildImage(widget.garden.resultImagePath),
+              child: widget.buildImage(widget.kidsRoom.resultImagePath),
             ),
             // Divider
             Positioned(
@@ -852,12 +852,12 @@ class _FullscreenViewState extends State<_FullscreenView> {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Container(width: 2, color: Colors.white),
+                    Container(width: 2, color: AppTheme.charcoal),
                     Container(
                       width: 40,
                       height: 40,
                       decoration: const BoxDecoration(
-                          color: Colors.white, shape: BoxShape.circle),
+                          color: AppTheme.charcoal, shape: BoxShape.circle),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -893,8 +893,8 @@ class _FullscreenViewState extends State<_FullscreenView> {
                     color: Colors.black.withValues(alpha: 0.5),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.close_rounded,
-                      color: Colors.white, size: 22),
+                  child: Icon(Icons.close_rounded,
+                      color: AppTheme.charcoal, size: 22),
                 ),
               ),
             ),
@@ -910,9 +910,9 @@ class _FullscreenViewState extends State<_FullscreenView> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
-                    widget.garden.styleName,
-                    style: const TextStyle(
-                        color: Colors.white,
+                    widget.kidsRoom.styleName,
+                    style: TextStyle(
+                        color: AppTheme.charcoal,
                         fontWeight: FontWeight.w700,
                         fontSize: 16),
                   ),
@@ -942,7 +942,7 @@ class _RightClipper extends CustomClipper<Rect> {
 class _SliderLabel extends StatelessWidget {
   final String text;
   final Color color;
-  const _SliderLabel({required this.text, this.color = Colors.white70});
+  const _SliderLabel({required this.text, this.color = AppTheme.slate});
 
   @override
   Widget build(BuildContext context) {
@@ -1026,7 +1026,7 @@ class _SelectionBar extends StatelessWidget {
       child: Row(
         children: [
           Text('$count selected',
-              style: const TextStyle(
+              style: TextStyle(
                   color: AppTheme.mintGreen,
                   fontWeight: FontWeight.w600,
                   fontSize: 14)),
@@ -1035,8 +1035,8 @@ class _SelectionBar extends StatelessWidget {
             onTap: onSelectAll,
             child: Text(
               allSelected ? 'Deselect All' : 'Select All',
-              style: const TextStyle(
-                  color: Colors.white60,
+              style: TextStyle(
+                  color: AppTheme.charcoal.withValues(alpha: 0.6),
                   fontSize: 13,
                   fontWeight: FontWeight.w500),
             ),
@@ -1085,12 +1085,12 @@ class _DetailAction extends StatelessWidget {
         decoration: BoxDecoration(
           color: color == Colors.redAccent
               ? Colors.redAccent.withValues(alpha: 0.12)
-              : Colors.white.withValues(alpha: 0.06),
+              : AppTheme.slate.withValues(alpha: 0.06),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: color == Colors.redAccent
                 ? Colors.redAccent.withValues(alpha: 0.3)
-                : Colors.white.withValues(alpha: 0.08),
+                : AppTheme.slate.withValues(alpha: 0.08),
           ),
         ),
         child: Column(
@@ -1103,7 +1103,7 @@ class _DetailAction extends StatelessWidget {
               style: TextStyle(
                   color: color == Colors.redAccent
                       ? Colors.redAccent
-                      : Colors.white70,
+                      : AppTheme.slate,
                   fontSize: 11,
                   fontWeight: FontWeight.w500),
             ),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../theme/app_theme.dart';
-import '../../models/garden_style.dart';
+import '../../models/kids_room_style.dart';
 import 'result_screen.dart';
 
 class RenderingScreen extends StatefulWidget {
   final String originalPath;
   final String resultPath;
-  final GardenStyle style;
+  final KidsRoomStyle style;
   final Map<String, dynamic> settings;
 
   const RenderingScreen({
@@ -61,10 +61,10 @@ class _RenderingScreenState extends State<RenderingScreen> {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  const Icon(Icons.wb_sunny_rounded, size: 80, color: AppTheme.sunGlow)
+                  Icon(Icons.wb_sunny_rounded, size: 80, color: AppTheme.sunGlow)
                       .animate(onPlay: (c) => c.repeat())
                       .rotate(duration: 4.seconds),
-                  const Icon(Icons.eco_rounded, size: 100, color: AppTheme.mossGreen)
+                  Icon(Icons.eco_rounded, size: 100, color: AppTheme.mossGreen)
                       .animate()
                       .scale(begin: const Offset(0, 0), end: const Offset(1, 1), duration: 2.seconds, curve: Curves.elasticOut)
                       .then()
@@ -72,7 +72,7 @@ class _RenderingScreenState extends State<RenderingScreen> {
                   // Swirling Leaves
                   ...List.generate(5, (index) {
                     return Positioned(
-                      child: const Icon(Icons.spa, size: 20, color: Color(0xFF6FAF6F))
+                      child: Icon(Icons.spa, size: 20, color: Color(0xFF6FAF6F))
                           .animate(onPlay: (c) => c.repeat())
                           .move(
                             begin: const Offset(0, 0),

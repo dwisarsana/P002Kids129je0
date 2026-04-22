@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/garden_model.dart';
-import '../../models/garden_style.dart';
-import '../../services/garden_generation_service.dart';
+import '../../models/kids_room_model.dart';
+import '../../models/kids_room_style.dart';
+import '../../services/kids_room_generation_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
 import 'result_screen.dart';
@@ -15,7 +15,7 @@ import '../../src/constant.dart';
 
 class GeneratingScreen extends StatefulWidget {
   final String imagePath;
-  final GardenStyle style;
+  final KidsRoomStyle style;
   final Map<String, dynamic> settings;
 
   const GeneratingScreen({
@@ -33,9 +33,9 @@ class _GeneratingScreenState extends State<GeneratingScreen>
     with TickerProviderStateMixin {
   late final AnimationController _rotateCtrl;
   late final AnimationController _pulseCtrl;
-  final _service = GardenGenerationService();
+  final _service = KidsRoomGenerationService();
 
-  String _statusMessage = 'Analyzing your garden...';
+  String _statusMessage = 'Analyzing your Kids Room...';
   double _progress = 0.0;
   bool _hasError = false;
   String _errorMsg = '';
@@ -65,10 +65,10 @@ class _GeneratingScreenState extends State<GeneratingScreen>
 
   Future<void> _generate() async {
     final messages = [
-      (0.1, 'Analyzing garden space...'),
+      (0.1, 'Analyzing Kids Room space...'),
       (0.25, 'Building style prompt...'),
       (0.45, 'Connecting to AI service...'),
-      (0.65, 'Generating your garden design...'),
+      (0.65, 'Generating your Kids Room design...'),
       (0.85, 'Finalizing details...'),
     ];
 
@@ -111,7 +111,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
 
       setState(() {
         _progress = 1.0;
-        _statusMessage = 'Your garden is ready!';
+        _statusMessage = 'Your Kids Room is ready!';
       });
 
       // Save to history
@@ -156,8 +156,8 @@ class _GeneratingScreenState extends State<GeneratingScreen>
   Future<void> _saveToHistory(String resultUrl) async {
     try {
       final storage = context.read<StorageService>();
-      final current = await storage.loadGardens();
-      final garden = GardenModel(
+      final current = await storage.loadkidsRooms();
+      final kidsRoom = KidsRoomModel(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         originalImagePath: widget.imagePath,
         resultImagePath: resultUrl,
@@ -165,7 +165,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
         timestamp: DateTime.now(),
         settings: widget.settings,
       );
-      await storage.saveGardens([garden, ...current]);
+      await storage.savekidsRooms([kidsRoom, ...current]);
       // Increment session count for settings screen
       await incrementTotalGenerationCount();
     } catch (e) {
@@ -195,7 +195,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Animated garden icon
+        // Animated KidsRoom icon
         SizedBox(
           width: 160,
           height: 160,
@@ -265,12 +265,12 @@ class _GeneratingScreenState extends State<GeneratingScreen>
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.auto_awesome_rounded,
+              Icon(Icons.auto_awesome_rounded,
                   color: AppTheme.mintGreen, size: 16),
               const SizedBox(width: 8),
               Text(
                 widget.style.name,
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppTheme.mintGreen,
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
@@ -283,9 +283,9 @@ class _GeneratingScreenState extends State<GeneratingScreen>
         const SizedBox(height: 24),
 
         Text(
-          'Creating Your Garden',
+          'Creating Your Kids Room',
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: Colors.white,
+                color: AppTheme.charcoal,
                 fontWeight: FontWeight.w800,
               ),
           textAlign: TextAlign.center,
@@ -299,7 +299,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
             _statusMessage,
             key: ValueKey(_statusMessage),
             style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.6),
+              color: AppTheme.charcoal.withValues(alpha: 0.6),
               fontSize: 14,
             ),
             textAlign: TextAlign.center,
@@ -317,13 +317,13 @@ class _GeneratingScreenState extends State<GeneratingScreen>
                 Text(
                   'Progress',
                   style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.5),
+                    color: AppTheme.charcoal.withValues(alpha: 0.5),
                     fontSize: 12,
                   ),
                 ),
                 Text(
                   '${(_progress * 100).toInt()}%',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppTheme.mintGreen,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -340,7 +340,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
                 builder: (_, val, __) => LinearProgressIndicator(
                   value: val,
                   minHeight: 8,
-                  backgroundColor: Colors.white.withValues(alpha: 0.1),
+                  backgroundColor: AppTheme.slate.withValues(alpha: 0.1),
                   valueColor:
                       const AlwaysStoppedAnimation<Color>(AppTheme.mossGreen),
                 ),
@@ -380,7 +380,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
             shape: BoxShape.circle,
             color: Colors.redAccent.withValues(alpha: 0.15),
           ),
-          child: const Icon(
+          child: Icon(
             Icons.error_outline_rounded,
             size: 52,
             color: Colors.redAccent,
@@ -390,7 +390,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
         Text(
           'Generation Failed',
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: Colors.white,
+                color: AppTheme.charcoal,
                 fontWeight: FontWeight.w700,
               ),
         ),
@@ -398,7 +398,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
         Text(
           _errorMsg,
           style: TextStyle(
-            color: Colors.white.withValues(alpha: 0.6),
+            color: AppTheme.charcoal.withValues(alpha: 0.6),
             fontSize: 14,
             height: 1.4,
           ),
@@ -411,14 +411,14 @@ class _GeneratingScreenState extends State<GeneratingScreen>
               child: OutlinedButton(
                 onPressed: () => Navigator.pop(context),
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.white70,
-                  side: const BorderSide(color: Colors.white24),
+                  foregroundColor: AppTheme.slate,
+                  side: BorderSide(color: AppTheme.charcoal.withValues(alpha: 0.24)),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: const Text('Go Back'),
+                child: Text('Go Back'),
               ),
             ),
             const SizedBox(width: 16),
@@ -439,9 +439,9 @@ class _GeneratingScreenState extends State<GeneratingScreen>
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   'Try Again',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                  style: TextStyle(color: AppTheme.charcoal, fontWeight: FontWeight.w600),
                 ),
               ),
             ),

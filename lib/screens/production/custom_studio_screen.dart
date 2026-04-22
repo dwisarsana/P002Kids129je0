@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../theme/app_theme.dart';
-import '../../models/garden_style.dart';
+import '../../models/kids_room_style.dart';
 import '../../mock/mock_data.dart';
 import '../../widgets/glass_container.dart';
 import 'generating_screen.dart';
@@ -11,7 +11,7 @@ import '../../src/constant.dart';
 
 class CustomStudioScreen extends StatefulWidget {
   final String imagePath;
-  final GardenStyle selectedStyle;
+  final KidsRoomStyle selectedStyle;
 
   const CustomStudioScreen({
     super.key,
@@ -141,14 +141,14 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                         child: Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.1),
+                            color: AppTheme.charcoal.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(14),
                             border: Border.all(
-                                color: Colors.white.withValues(alpha: 0.1)),
+                                color: AppTheme.charcoal.withValues(alpha: 0.1)),
                           ),
-                          child: const Icon(
+                          child: Icon(
                               Icons.arrow_back_ios_new_rounded,
-                              color: Colors.white,
+                              color: AppTheme.charcoal,
                               size: 18),
                         ),
                       ),
@@ -160,15 +160,15 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                             Text(
                               'Customize',
                               style: TextStyle(
-                                color: Colors.white.withValues(alpha: 0.6),
+                                color: AppTheme.charcoal.withValues(alpha: 0.6),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
                             Text(
                               widget.selectedStyle.name,
-                              style: const TextStyle(
-                                color: Colors.white,
+                              style: TextStyle(
+                                color: AppTheme.charcoal,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w800,
                                 letterSpacing: -0.3,
@@ -199,13 +199,13 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                           padding: const EdgeInsets.symmetric(
                               horizontal: 14, vertical: 8),
                           decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.1),
+                            color: AppTheme.charcoal.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: const Text(
+                          child: Text(
                             'Reset',
                             style: TextStyle(
-                              color: Colors.white70,
+                              color: AppTheme.charcoal.withValues(alpha: 0.7),
                               fontSize: 13,
                               fontWeight: FontWeight.w500,
                             ),
@@ -222,10 +222,10 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                   padding: const EdgeInsets.symmetric(
                       horizontal: 16, vertical: 10),
                   decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.08),
+                    color: AppTheme.charcoal.withValues(alpha: 0.08),
                     borderRadius: BorderRadius.circular(14),
                     border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.08)),
+                        color: AppTheme.charcoal.withValues(alpha: 0.08)),
                   ),
                   child: Row(
                     children: [
@@ -235,9 +235,9 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Adjust every detail to create your perfect ${widget.selectedStyle.name.toLowerCase()} garden',
+                          'Adjust every detail to create your perfect ${widget.selectedStyle.name.toLowerCase()} KidsRoom',
                           style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.6),
+                            color: AppTheme.charcoal.withValues(alpha: 0.6),
                             fontSize: 12,
                             height: 1.3,
                           ),
@@ -260,7 +260,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                         const BorderRadius.vertical(top: Radius.circular(32)),
                     border: Border(
                       top: BorderSide(
-                          color: Colors.white.withValues(alpha: 0.08)),
+                          color: AppTheme.charcoal.withValues(alpha: 0.08)),
                     ),
                   ),
                   child: Column(
@@ -271,7 +271,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                         height: 4,
                         margin: const EdgeInsets.only(top: 12, bottom: 10),
                         decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.2),
+                          color: AppTheme.charcoal.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(2),
                         ),
                       ),
@@ -286,12 +286,12 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                           indicatorWeight: 3,
                           indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
                           labelColor: Colors.white,
-                          unselectedLabelColor: Colors.white38,
-                          labelStyle: const TextStyle(
+                          unselectedLabelColor: AppTheme.slate,
+                          labelStyle: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w700,
                           ),
-                          unselectedLabelStyle: const TextStyle(
+                          unselectedLabelStyle: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w400,
                           ),
@@ -354,12 +354,12 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
                                 Icon(Icons.auto_awesome_rounded,
-                                    color: Colors.white, size: 20),
+                                    color: AppTheme.charcoal, size: 20),
                                 SizedBox(width: 10),
                                 Text(
-                                  'Generate Garden Design',
+                                  'Generate Kids Room Design',
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: AppTheme.charcoal,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -416,12 +416,12 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                     decoration: BoxDecoration(
                       color: isSelected
                           ? (s['color'] as Color).withValues(alpha: 0.15)
-                          : Colors.white.withValues(alpha: 0.05),
+                          : AppTheme.slate.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(18),
                       border: Border.all(
                         color: isSelected
                             ? (s['color'] as Color).withValues(alpha: 0.5)
-                            : Colors.white.withValues(alpha: 0.08),
+                            : AppTheme.slate.withValues(alpha: 0.08),
                         width: isSelected ? 2 : 1,
                       ),
                     ),
@@ -432,7 +432,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                           children: [
                             Text(
                               s['icon'] as String,
-                              style: const TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 20),
                             ),
                             if (isSelected) ...[
                               const Spacer(),
@@ -455,7 +455,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                         Text(
                           s['desc'] as String,
                           style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.4),
+                            color: AppTheme.charcoal.withValues(alpha: 0.4),
                             fontSize: 9,
                           ),
                           maxLines: 1,
@@ -495,7 +495,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                     decoration: BoxDecoration(
                       color: isSelected
                           ? (t['color'] as Color).withValues(alpha: 0.2)
-                          : Colors.white.withValues(alpha: 0.05),
+                          : AppTheme.slate.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: isSelected
@@ -507,14 +507,14 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(t['icon'] as String,
-                            style: const TextStyle(fontSize: 16)),
+                            style: TextStyle(fontSize: 16)),
                         const SizedBox(width: 6),
                         Text(
                           t['name'] as String,
                           style: TextStyle(
                             color: isSelected
                                 ? Colors.white
-                                : Colors.white54,
+                                : AppTheme.slate,
                             fontSize: 12,
                             fontWeight: isSelected
                                 ? FontWeight.w600
@@ -600,30 +600,30 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: MockData.plantCategories.map((cat) {
+            children: MockData.toyCategories.map((cat) {
               return Container(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 14, vertical: 10),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.06),
+                  color: AppTheme.charcoal.withValues(alpha: 0.06),
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.08),
+                    color: AppTheme.charcoal.withValues(alpha: 0.08),
                   ),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(cat['icon'] as String,
-                        style: const TextStyle(fontSize: 18)),
+                        style: TextStyle(fontSize: 18)),
                     const SizedBox(width: 8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           cat['name'] as String,
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style: TextStyle(
+                            color: AppTheme.charcoal,
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                           ),
@@ -631,7 +631,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                         Text(
                           '${cat['count']} varieties',
                           style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.4),
+                            color: AppTheme.charcoal.withValues(alpha: 0.4),
                             fontSize: 10,
                           ),
                         ),
@@ -660,9 +660,9 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
             height: 90,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: MockData.hardscapeOptions.length,
+              itemCount: MockData.furnitureOptions.length,
               itemBuilder: (context, index) {
-                final option = MockData.hardscapeOptions[index];
+                final option = MockData.furnitureOptions[index];
                 final isSelected = _selectedPathway == index;
                 return GestureDetector(
                   onTap: () {
@@ -676,12 +676,12 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                     decoration: BoxDecoration(
                       color: isSelected
                           ? AppTheme.mossGreen.withValues(alpha: 0.15)
-                          : Colors.white.withValues(alpha: 0.05),
+                          : AppTheme.slate.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(18),
                       border: Border.all(
                         color: isSelected
                             ? AppTheme.mossGreen.withValues(alpha: 0.5)
-                            : Colors.white.withValues(alpha: 0.08),
+                            : AppTheme.slate.withValues(alpha: 0.08),
                         width: isSelected ? 2 : 1,
                       ),
                     ),
@@ -690,7 +690,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                       children: [
                         Text(
                           option['icon'] as String,
-                          style: const TextStyle(fontSize: 28),
+                          style: TextStyle(fontSize: 28),
                         ),
                         const SizedBox(height: 8),
                         Text(
@@ -698,7 +698,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                           style: TextStyle(
                             color: isSelected
                                 ? Colors.white
-                                : Colors.white54,
+                                : AppTheme.slate,
                             fontSize: 11,
                             fontWeight: isSelected
                                 ? FontWeight.w600
@@ -717,18 +717,18 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
           const SizedBox(height: 24),
 
           // Additional hardscape options
-          _SectionLabel(label: 'Garden Structures', icon: Icons.fence_rounded),
+          _SectionLabel(label: 'Room Themes & Structures', icon: Icons.fence_rounded),
           const SizedBox(height: 12),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: [
-              _ToggleChip(label: '🏡 Pergola', isOn: true),
+              _ToggleChip(label: '🧸 Toy Chest', isOn: true),
               _ToggleChip(label: '🪑 Seating', isOn: false),
-              _ToggleChip(label: '🔥 Fire Pit', isOn: false),
-              _ToggleChip(label: '🏗️ Raised Beds', isOn: true),
-              _ToggleChip(label: '🧱 Retaining Wall', isOn: false),
-              _ToggleChip(label: '🚪 Garden Gate', isOn: false),
+              _ToggleChip(label: '🔥 Night Light', isOn: false),
+              _ToggleChip(label: '🏗️ Bunk Bed', isOn: true),
+              _ToggleChip(label: '🎨 Art Station', isOn: false),
+              _ToggleChip(label: '🚪 Room Door', isOn: false),
             ],
           ),
         ],
@@ -766,12 +766,12 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                     decoration: BoxDecoration(
                       color: isSelected
                           ? AppTheme.sunGlow.withValues(alpha: 0.15)
-                          : Colors.white.withValues(alpha: 0.05),
+                          : AppTheme.slate.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(18),
                       border: Border.all(
                         color: isSelected
                             ? AppTheme.sunGlow.withValues(alpha: 0.5)
-                            : Colors.white.withValues(alpha: 0.08),
+                            : AppTheme.slate.withValues(alpha: 0.08),
                         width: isSelected ? 2 : 1,
                       ),
                     ),
@@ -780,7 +780,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                       children: [
                         Text(
                           option['icon'] as String,
-                          style: const TextStyle(fontSize: 24),
+                          style: TextStyle(fontSize: 24),
                         ),
                         const SizedBox(height: 6),
                         Text(
@@ -788,7 +788,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                           style: TextStyle(
                             color: isSelected
                                 ? Colors.white
-                                : Colors.white54,
+                                : AppTheme.slate,
                             fontSize: 10,
                             fontWeight: isSelected
                                 ? FontWeight.w600
@@ -841,7 +841,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _SliderRow(
-            label: 'Water Element Scale',
+            label: 'Play Area Scale',
             value: _water,
             icon: Icons.water_drop_rounded,
             activeColor: AppTheme.skyBlue,
@@ -852,15 +852,15 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
 
           const SizedBox(height: 20),
 
-          _SectionLabel(label: 'Water Feature Type', icon: Icons.waves_rounded),
+          _SectionLabel(label: 'Play Feature Type', icon: Icons.waves_rounded),
           const SizedBox(height: 12),
           SizedBox(
             height: 100,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: MockData.waterFeatures.length,
+              itemCount: MockData.playFeatures.length,
               itemBuilder: (context, index) {
-                final option = MockData.waterFeatures[index];
+                final option = MockData.playFeatures[index];
                 final isSelected = _selectedWaterFeature == index;
                 return GestureDetector(
                   onTap: () {
@@ -880,12 +880,12 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                     decoration: BoxDecoration(
                       color: isSelected
                           ? AppTheme.skyBlue.withValues(alpha: 0.15)
-                          : Colors.white.withValues(alpha: 0.05),
+                          : AppTheme.slate.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(18),
                       border: Border.all(
                         color: isSelected
                             ? AppTheme.skyBlue.withValues(alpha: 0.5)
-                            : Colors.white.withValues(alpha: 0.08),
+                            : AppTheme.slate.withValues(alpha: 0.08),
                         width: isSelected ? 2 : 1,
                       ),
                     ),
@@ -894,7 +894,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                       children: [
                         Text(
                           option['icon'] as String,
-                          style: const TextStyle(fontSize: 28),
+                          style: TextStyle(fontSize: 28),
                         ),
                         const SizedBox(height: 8),
                         Text(
@@ -902,7 +902,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                           style: TextStyle(
                             color: isSelected
                                 ? Colors.white
-                                : Colors.white54,
+                                : AppTheme.slate,
                             fontSize: 11,
                             fontWeight: isSelected
                                 ? FontWeight.w600
@@ -935,12 +935,12 @@ class _SectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon, color: Colors.white54, size: 16),
+        Icon(icon, color: AppTheme.charcoal.withValues(alpha: 0.54), size: 16),
         const SizedBox(width: 8),
         Text(
           label.toUpperCase(),
-          style: const TextStyle(
-            color: Colors.white54,
+          style: TextStyle(
+            color: AppTheme.charcoal.withValues(alpha: 0.54),
             fontSize: 11,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.2,
@@ -981,8 +981,8 @@ class _SliderRow extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               label,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: AppTheme.charcoal,
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
               ),
@@ -1010,7 +1010,7 @@ class _SliderRow extends StatelessWidget {
         SliderTheme(
           data: SliderThemeData(
             activeTrackColor: activeColor,
-            inactiveTrackColor: Colors.white.withValues(alpha: 0.08),
+            inactiveTrackColor: AppTheme.slate.withValues(alpha: 0.08),
             thumbColor: Colors.white,
             trackHeight: 4,
             thumbShape: const RoundSliderThumbShape(
@@ -1033,14 +1033,14 @@ class _SliderRow extends StatelessWidget {
                 Text(
                   leftLabel,
                   style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.3),
+                    color: AppTheme.charcoal.withValues(alpha: 0.3),
                     fontSize: 10,
                   ),
                 ),
                 Text(
                   rightLabel,
                   style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.3),
+                    color: AppTheme.charcoal.withValues(alpha: 0.3),
                     fontSize: 10,
                   ),
                 ),
@@ -1084,18 +1084,18 @@ class _ToggleChipState extends State<_ToggleChip> {
         decoration: BoxDecoration(
           color: _on
               ? AppTheme.mossGreen.withValues(alpha: 0.15)
-              : Colors.white.withValues(alpha: 0.05),
+              : AppTheme.slate.withValues(alpha: 0.05),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: _on
                 ? AppTheme.mossGreen.withValues(alpha: 0.4)
-                : Colors.white.withValues(alpha: 0.08),
+                : AppTheme.slate.withValues(alpha: 0.08),
           ),
         ),
         child: Text(
           widget.label,
           style: TextStyle(
-            color: _on ? Colors.white : Colors.white54,
+            color: _on ? Colors.white : AppTheme.slate,
             fontSize: 12,
             fontWeight: _on ? FontWeight.w600 : FontWeight.w400,
           ),

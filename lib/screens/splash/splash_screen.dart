@@ -1,4 +1,4 @@
-// Garden AI — Splash Screen (Enhanced UI)
+// KidsRoom AI — Splash Screen (Enhanced UI)
 
 import 'dart:async';
 import 'dart:math' as math;
@@ -19,7 +19,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
-  String _loadingText = 'Starting Garden AI...';
+  String _loadingText = 'Starting Kids Room AI...';
   int _loadingStep = 0;
 
   late final AnimationController _logoScale;
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   static const _loadingSteps = [
     'Analyzing landscape layout...',
-    'Preparing garden styles...',
+    'Preparing Kids Room styles...',
     'Loading AI growth models...',
     'Setting up your sanctuary...',
     'Almost ready...',
@@ -176,7 +176,7 @@ class _SplashScreenState extends State<SplashScreen>
           Positioned.fill(
             child: CustomPaint(
               painter: _GridPainter(
-                color: Colors.white.withValues(alpha: 0.025),
+                color: AppTheme.charcoal.withValues(alpha: 0.025),
               ),
             ),
           ),
@@ -284,15 +284,15 @@ class _SplashScreenState extends State<SplashScreen>
                   opacity: _fadeAnimation,
                   child: Column(
                     children: [
-                      // "GARDEN" in white, "AI" in accent — editorial split
+                      // "KidsRoom" in white, "AI" in accent — editorial split
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          const Text(
-                            'GARDEN',
+                          Text(
+                            'Kids Room',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: AppTheme.charcoal,
                               fontSize: 34,
                               fontWeight: FontWeight.w900,
                               letterSpacing: 3.0,
@@ -309,7 +309,7 @@ class _SplashScreenState extends State<SplashScreen>
                               color: AppTheme.mossGreen,
                               borderRadius: BorderRadius.circular(6),
                             ),
-                            child: const Text(
+                            child: Text(
                               'AI',
                               style: TextStyle(
                                 color: Colors.black,
@@ -330,7 +330,7 @@ class _SplashScreenState extends State<SplashScreen>
                           Container(
                             width: 40,
                             height: 1,
-                            color: Colors.white.withValues(alpha: 0.1),
+                            color: AppTheme.charcoal.withValues(alpha: 0.1),
                           ),
                           const SizedBox(width: 8),
                           Container(
@@ -345,7 +345,7 @@ class _SplashScreenState extends State<SplashScreen>
                           Container(
                             width: 40,
                             height: 1,
-                            color: Colors.white.withValues(alpha: 0.1),
+                            color: AppTheme.charcoal.withValues(alpha: 0.1),
                           ),
                         ],
                       ),
@@ -396,7 +396,7 @@ class _SplashScreenState extends State<SplashScreen>
                                       decoration: BoxDecoration(
                                         color: filled
                                             ? AppTheme.mossGreen
-                                            : Colors.white.withValues(
+                                            : AppTheme.slate.withValues(
                                                 alpha: 0.08,
                                               ),
                                         borderRadius: BorderRadius.circular(2),
@@ -427,7 +427,7 @@ class _SplashScreenState extends State<SplashScreen>
                           _loadingText,
                           key: ValueKey(_loadingText),
                           style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.35),
+                            color: AppTheme.charcoal.withValues(alpha: 0.35),
                             fontSize: 11.5,
                             letterSpacing: 0.8,
                             fontWeight: FontWeight.w400,
@@ -448,11 +448,11 @@ class _SplashScreenState extends State<SplashScreen>
             right: 0,
             child: FadeTransition(
               opacity: _fadeAnimation,
-              child: const Center(
+              child: Center(
                 child: Text(
                   'Powered by AI',
                   style: TextStyle(
-                    color: Colors.white10,
+                    color: AppTheme.charcoal.withValues(alpha: 0.1),
                     fontSize: 11,
                     letterSpacing: 2,
                     fontWeight: FontWeight.w500,

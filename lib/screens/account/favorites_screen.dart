@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../../theme/app_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../../models/garden_model.dart';
+import '../../models/kids_room_model.dart';
 import '../../services/storage_service.dart';
 import '../../mock/mock_data.dart';
 import '../../widgets/glass_container.dart';
@@ -15,12 +16,12 @@ class FavoritesScreen extends StatefulWidget {
 }
 
 class _FavoritesScreenState extends State<FavoritesScreen> {
-  late Future<List<GardenModel>> _gardensFuture;
+  late Future<List<KidsRoomModel>> _kidsRoomsFuture;
 
   @override
   void initState() {
     super.initState();
-    _gardensFuture = context.read<StorageService>().loadGardens();
+    _kidsRoomsFuture = context.read<StorageService>().loadkidsRooms();
   }
 
   Widget _buildImage(String path) {
@@ -55,8 +56,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               ).animate().fadeIn(),
               const SizedBox(height: 20),
               Expanded(
-                child: FutureBuilder<List<GardenModel>>(
-                  future: _gardensFuture,
+                child: FutureBuilder<List<KidsRoomModel>>(
+                  future: _kidsRoomsFuture,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Center(child: CircularProgressIndicator());
@@ -83,13 +84,13 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         mainAxisSpacing: 16,
                       ),
                       itemBuilder: (context, index) {
-                        final garden = favorites[index];
+                        final kidsRoom = favorites[index];
                         return GlassContainer(
                           padding: EdgeInsets.zero,
                           child: Stack(
                             fit: StackFit.expand,
                             children: [
-                              _buildImage(garden.resultImagePath),
+                              _buildImage(kidsRoom.resultImagePath),
                               Positioned(
                                 bottom: 0,
                                 left: 0,
@@ -110,9 +111,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        garden.styleName,
-                                        style: const TextStyle(
-                                          color: Colors.white,
+                                        kidsRoom.styleName,
+                                        style: TextStyle(
+                                          color: AppTheme.charcoal,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
                                         ),

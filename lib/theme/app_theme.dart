@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // Primary Colors
-  static const Color mossGreen = Color(0xFF2D5A27);
-  static const Color leafGreen = Color(0xFF4CAF50);
-  static const Color mintGreen = Color(0xFF81C784);
-  static const Color deepSoil = Color(0xFF212121);
-  static const Color warmSand = Color(0xFFF5F0E8);
-  static const Color mistWhite = Color(0xFFFAFAFA);
-  static const Color sunGlow = Color(0xFFFFB74D);
-  static const Color skyBlue = Color(0xFF64B5F6);
+  // Primary Colors for Kids Room AI (Light Theme)
+  static const Color mossGreen = Color(0xFFF43F5E); // Rose (Primary)
+  static const Color leafGreen = Color(0xFF10B981); // Emerald
+  static const Color mintGreen = Color(0xFF8B5CF6); // Purple
+  static const Color deepSoil = Color(0xFFE0E0E0); // Lighter gray for elements
+  static const Color warmSand = Color(0xFFF8F9FA); // Very light gray background
+  static const Color mistWhite = Color(0xFFFFFFFF); // Pure white for cards
+  static const Color sunGlow = Color(0xFFFFB74D); // Warm Orange
+  static const Color skyBlue = Color(0xFF64B5F6); // Soft Blue
   static const Color roseGold = Color(0xFFE8B4B8);
   static const Color lavender = Color(0xFFB39DDB);
   static const Color coral = Color(0xFFFF8A65);
-  static const Color slate = Color(0xFF37474F);
-  static const Color charcoal = Color(0xFF1A1A1A);
+  static const Color slate = Color(0xFF455A64); // Dark slate for subtitle text
+  static const Color charcoal = Color(0xFF1A1A1A); // Almost black for main text
   static const Color cream = Color(0xFFFFF8E1);
+  static const Color textLight = Color(0xFF1A1A1A); // Alias for dark text on light bg
 
   // Gradients for existing widgets compatibility
   static const LinearGradient leafGradient = LinearGradient(
-    colors: [leafGreen, mossGreen],
+    colors: [leafGreen, skyBlue],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
@@ -31,13 +33,13 @@ class AppTheme {
   );
 
   static ThemeData get theme => ThemeData(
-        fontFamily: 'SF Pro Display',
+
         scaffoldBackgroundColor: warmSand,
         colorScheme: ColorScheme.fromSeed(
           seedColor: mossGreen,
           brightness: Brightness.light,
         ),
-        textTheme: const TextTheme(
+        textTheme: GoogleFonts.nunitoTextTheme(const TextTheme(
           displayLarge: TextStyle(
             fontSize: 34,
             fontWeight: FontWeight.w800,
@@ -79,6 +81,9 @@ class AppTheme {
             color: slate,
             letterSpacing: 0.5,
           ),
+        )),
+        iconTheme: const IconThemeData(
+          color: charcoal,
         ),
       );
 

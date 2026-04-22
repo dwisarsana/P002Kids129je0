@@ -46,7 +46,7 @@ class _UploadScreenState extends State<UploadScreen>
     {
       'icon': Icons.hd_rounded,
       'title': 'High Resolution',
-      'desc': 'Clear photos produce more detailed garden designs',
+      'desc': 'Clear photos produce more detailed Kids Room designs',
       'color': const Color(0xFFB39DDB),
     },
   ];
@@ -161,14 +161,14 @@ class _UploadScreenState extends State<UploadScreen>
             height: 4,
             margin: const EdgeInsets.only(bottom: 24),
             decoration: BoxDecoration(
-              color: Colors.white24,
+              color: AppTheme.charcoal.withValues(alpha: 0.24),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
           Text(
-            'Add Your Garden Photo',
+            'Add Your Kids Room Photo',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: Colors.white,
+                  color: AppTheme.charcoal,
                   fontWeight: FontWeight.w700,
                 ),
           ),
@@ -176,7 +176,7 @@ class _UploadScreenState extends State<UploadScreen>
           Text(
             'Choose how you\'d like to capture your space',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.white60,
+                  color: AppTheme.charcoal.withValues(alpha: 0.6),
                 ),
           ),
           const SizedBox(height: 28),
@@ -234,7 +234,7 @@ class _UploadScreenState extends State<UploadScreen>
                 ),
               ],
             ),
-            child: const Icon(Icons.arrow_back_ios_new_rounded,
+            child: Icon(Icons.arrow_back_ios_new_rounded,
                 color: AppTheme.charcoal, size: 18),
           ),
           onPressed: () => Navigator.pop(context),
@@ -248,12 +248,12 @@ class _UploadScreenState extends State<UploadScreen>
                 color: AppTheme.mossGreen.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: const Icon(Icons.eco_rounded,
+              child: Icon(Icons.eco_rounded,
                   color: AppTheme.mossGreen, size: 18),
             ),
             const SizedBox(width: 10),
             Text(
-              "Upload Garden",
+              "Upload KidsRoom",
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
@@ -275,7 +275,7 @@ class _UploadScreenState extends State<UploadScreen>
                   ),
                 ],
               ),
-              child: const Icon(Icons.home_rounded, color: AppTheme.mossGreen, size: 20),
+              child: Icon(Icons.home_rounded, color: AppTheme.mossGreen, size: 20),
             ),
             onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
           ),
@@ -355,7 +355,7 @@ class _UploadScreenState extends State<UploadScreen>
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      "AI-powered garden design in seconds",
+                      "AI-powered KidsRoom design in seconds",
                       style:
                           Theme.of(context).textTheme.bodyMedium?.copyWith(
                                 color: AppTheme.mossGreen,
@@ -395,7 +395,7 @@ class _UploadScreenState extends State<UploadScreen>
                           ],
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(20), bottomLeft: Radius.circular(20), bottomRight: Radius.circular(40)),
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
@@ -432,10 +432,10 @@ class _UploadScreenState extends State<UploadScreen>
                                           ),
                                         ),
                                         const SizedBox(height: 20),
-                                        const Text(
+                                        Text(
                                           'Preparing image...',
                                           style: TextStyle(
-                                            color: Colors.white,
+                                            color: AppTheme.charcoal,
                                             fontSize: 16,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -452,7 +452,7 @@ class _UploadScreenState extends State<UploadScreen>
                                 // Hero background image
                                 Positioned.fill(
                                   child: Image.asset(
-                                    'assets/images/AI Garden Transformation.jpeg',
+                                    'assets/images/AI kids_room Transformation.jpeg',
                                     fit: BoxFit.cover,
                                   ).animate().blur(begin: const Offset(4, 4), end: Offset.zero, duration: 1.seconds).scale(begin: const Offset(1.1, 1.1), end: const Offset(1.0, 1.0), duration: 1.seconds),
                                 ),
@@ -505,7 +505,7 @@ class _UploadScreenState extends State<UploadScreen>
                                           .textTheme
                                           .titleMedium
                                           ?.copyWith(
-                                            color: Colors.white,
+                                            color: AppTheme.charcoal,
                                             fontWeight: FontWeight.w700,
                                           ),
                                     ),
@@ -516,7 +516,7 @@ class _UploadScreenState extends State<UploadScreen>
                                           .textTheme
                                           .bodySmall
                                           ?.copyWith(
-                                            color: Colors.white70,
+                                            color: AppTheme.charcoal.withValues(alpha: 0.7),
                                           ),
                                     ),
                                   ],
@@ -585,7 +585,7 @@ class _UploadScreenState extends State<UploadScreen>
                                   children: [
                                     Text(
                                       tip['title'] as String,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontWeight: FontWeight.w700,
                                         fontSize: 14,
                                         color: AppTheme.charcoal,
@@ -678,12 +678,12 @@ class _SourceOption extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Icon(icon, color: Colors.white, size: 32),
+            Icon(icon, color: AppTheme.charcoal, size: 32),
             const SizedBox(height: 12),
             Text(
               label,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: AppTheme.charcoal,
                 fontWeight: FontWeight.w700,
                 fontSize: 16,
               ),
@@ -692,7 +692,7 @@ class _SourceOption extends StatelessWidget {
             Text(
               subtitle,
               style: TextStyle(
-                color: Colors.white.withValues(alpha: 0.75),
+                color: AppTheme.charcoal.withValues(alpha: 0.75),
                 fontSize: 12,
               ),
             ),

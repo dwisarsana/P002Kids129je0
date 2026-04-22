@@ -57,7 +57,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     icon: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppTheme.charcoal,
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
@@ -66,7 +66,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ],
                       ),
-                      child: const Icon(Icons.arrow_back_ios_new_rounded, color: AppTheme.charcoal, size: 18),
+                      child: Icon(Icons.arrow_back_ios_new_rounded, color: AppTheme.charcoal, size: 18),
                     ),
                     onPressed: () => Navigator.pop(context),
                   ),
@@ -81,7 +81,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     icon: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppTheme.charcoal,
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
@@ -90,7 +90,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ],
                       ),
-                      child: const Icon(Icons.home_rounded, color: AppTheme.mossGreen, size: 20),
+                      child: Icon(Icons.home_rounded, color: AppTheme.mossGreen, size: 20),
                     ),
                     onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
                   ),
@@ -121,18 +121,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   color: AppTheme.mossGreen,
                                   borderRadius: BorderRadius.circular(8),
                                   onPressed: () => manageOrUpgrade(context),
-                                  child: const Text("Upgrade", style: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold)),
+                                  child: Text("Upgrade", style: TextStyle(fontSize: 12, color: AppTheme.charcoal, fontWeight: FontWeight.bold)),
                                 ),
                         ),
                         const Divider(height: 1),
                         ListTile(
-                          leading: const Icon(Icons.generating_tokens_outlined, color: AppTheme.mossGreen),
-                          title: const Text("Available Tokens"),
+                          leading: Icon(Icons.generating_tokens_outlined, color: AppTheme.mossGreen),
+                          title: Text("Available Tokens"),
                           trailing: ValueListenableBuilder<int>(
                             valueListenable: tokenBalanceListenable,
                             builder: (context, balance, _) => Text(
                               "$balance",
-                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                             ),
                           ),
                         ),
@@ -141,11 +141,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           future: getTotalGenerationCount(),
                           builder: (context, snapshot) {
                             return ListTile(
-                              leading: const Icon(Icons.auto_awesome_rounded, color: AppTheme.mossGreen),
-                              title: const Text("Total Generations"),
+                              leading: Icon(Icons.auto_awesome_rounded, color: AppTheme.mossGreen),
+                              title: Text("Total Generations"),
                               trailing: Text(
                                 "${snapshot.data ?? 0}",
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             );
                           },
@@ -165,20 +165,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: Column(
                   children: [
                     ListTile(
-                      leading: const Icon(Icons.restore_rounded, color: AppTheme.mossGreen),
-                      title: const Text("Restore Purchases"),
+                      leading: Icon(Icons.restore_rounded, color: AppTheme.mossGreen),
+                      title: Text("Restore Purchases"),
                       onTap: () => restorePurchases(),
                     ),
                     const Divider(height: 1),
                     ListTile(
-                      leading: const Icon(Icons.privacy_tip_outlined, color: AppTheme.mossGreen),
-                      title: const Text("Privacy Policy"),
+                      leading: Icon(Icons.privacy_tip_outlined, color: AppTheme.mossGreen),
+                      title: Text("Privacy Policy"),
                       onTap: () => _launchURL(kPrivacyPolicyUrl),
                     ),
                     const Divider(height: 1),
                     ListTile(
-                      leading: const Icon(Icons.description_outlined, color: AppTheme.mossGreen),
-                      title: const Text("Terms of Use"),
+                      leading: Icon(Icons.description_outlined, color: AppTheme.mossGreen),
+                      title: Text("Terms of Use"),
                       onTap: () => _launchURL(kTermsOfUseUrl),
                     ),
                   ],
@@ -197,8 +197,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     GlassContainer(
                       color: Colors.purple.withValues(alpha: 0.1),
                       child: SwitchListTile(
-                        title: const Text("Developer Mode"),
-                        subtitle: const Text("Bypass paywall for testing"),
+                        title: Text("Developer Mode"),
+                        subtitle: Text("Bypass paywall for testing"),
                         value: _isDevMode,
                         activeColor: Colors.purple,
                         onChanged: (v) async {
@@ -217,21 +217,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
               GlassContainer(
                 color: Colors.redAccent.withValues(alpha: 0.1),
                 child: ListTile(
-                  leading: const Icon(Icons.delete_forever_rounded, color: Colors.redAccent),
-                  title: const Text("Reset All Garden Data", style: TextStyle(color: Colors.redAccent)),
+                  leading: Icon(Icons.delete_forever_rounded, color: Colors.redAccent),
+                  title: Text("Reset All KidsRoom Data", style: TextStyle(color: Colors.redAccent)),
                   onTap: () async {
                     final storage = context.read<StorageService>();
                     final confirm = await showDialog<bool>(
                       context: context,
                       builder: (context) => AlertDialog(
                         backgroundColor: AppTheme.charcoal,
-                        title: const Text("Reset Data?"),
-                        content: const Text("This will delete all your saved gardens and reset tokens. This action cannot be undone."),
+                        title: Text("Reset Data?"),
+                        content: Text("This will delete all your saved kidsRooms and reset tokens. This action cannot be undone."),
                         actions: [
-                          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text("Cancel")),
+                          TextButton(onPressed: () => Navigator.pop(context, false), child: Text("Cancel")),
                           TextButton(
                             onPressed: () => Navigator.pop(context, true),
-                            child: const Text("Delete", style: TextStyle(color: Colors.red)),
+                            child: Text("Delete", style: TextStyle(color: Colors.red)),
                           ),
                         ],
                       ),
@@ -251,7 +251,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               const SizedBox(height: 40),
               Center(
                 child: Text(
-                  "Garden AI v1.0.0",
+                  "KidsRoom AI v1.0.0",
                   style: Theme.of(context).textTheme.labelSmall,
                 ),
               ),
