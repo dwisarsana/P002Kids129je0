@@ -412,7 +412,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
                 onPressed: () => Navigator.pop(context),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: AppTheme.slate,
-                  side: const BorderSide(color: AppTheme.charcoal.withValues(alpha: 0.24)),
+                  side: BorderSide(color: AppTheme.charcoal.withValues(alpha: 0.24)),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),

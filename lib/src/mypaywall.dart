@@ -220,7 +220,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
   }
 
   Widget _buildLoadingView() {
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -250,7 +250,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
               color: Colors.orange,
               size: 48,
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             Text(
               'Connection Error',
               style: TextStyle(
@@ -259,13 +259,13 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               _errorMessage ?? 'Store unavailable. Please try again later.',
               style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.54), fontSize: 13),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
             CupertinoButton(
               color: AppTheme.mossGreen,
               onPressed: () {
@@ -308,7 +308,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
       padding: const EdgeInsets.fromLTRB(24, 20, 24, 120),
       child: Column(
         children: [
-          const SizedBox(height: 30),
+          SizedBox(height: 30),
           // App Logo Placeholder
           Container(
             width: 80,
@@ -327,7 +327,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
               color: AppTheme.mossGreen,
             ),
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           Text(
             'KidsRoom AI Premium',
             style: TextStyle(
@@ -337,13 +337,13 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Text(
             'Transform your landscape with unlimited AI power and exclusive designs.',
             style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.6), fontSize: 15),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 40),
+          SizedBox(height: 40),
 
           _sectionTitle('Premium Features'),
           _feature(CupertinoIcons.infinite, 'Unlimited KidsRoom generations'),
@@ -355,7 +355,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
           _feature(CupertinoIcons.bolt_fill, 'Priority AI Rendering'),
           _feature(CupertinoIcons.star_fill, 'Exclusive early-access plants'),
 
-          const SizedBox(height: 40),
+          SizedBox(height: 40),
 
           if (packages.isEmpty)
             Text(
@@ -366,12 +366,12 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
             ...packages.map((p) => _planCard(p)),
 
           if (_token5 != null) ...[
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
             _sectionTitle('Token Packs'),
             _tokenCard(),
           ],
 
-          const SizedBox(height: 40),
+          SizedBox(height: 40),
           CupertinoButton(
             onPressed: _restorePurchases,
             child: Text(
@@ -379,12 +379,12 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
               style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.54), fontSize: 13),
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _linkText('Terms of Use', kTermsOfUseUrl),
-              const SizedBox(width: 24),
+              SizedBox(width: 24),
               _linkText('Privacy Policy', kPrivacyPolicyUrl),
             ],
           ),
@@ -452,7 +452,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
       child: Row(
         children: [
           Icon(icon, color: AppTheme.mossGreen, size: 18),
-          const SizedBox(width: 14),
+          SizedBox(width: 14),
           Expanded(
             child: Text(
               text,
@@ -530,8 +530,8 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
             color: AppTheme.mossGreen,
             size: 28,
           ),
-          const SizedBox(width: 14),
-          const Expanded(
+          SizedBox(width: 14),
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

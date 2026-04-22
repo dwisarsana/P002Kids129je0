@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // Primary Colors for Kids Room AI (Light Theme)
@@ -32,13 +33,13 @@ class AppTheme {
   );
 
   static ThemeData get theme => ThemeData(
-        fontFamily: 'SF Pro Display',
+
         scaffoldBackgroundColor: warmSand,
         colorScheme: ColorScheme.fromSeed(
           seedColor: mossGreen,
           brightness: Brightness.light,
         ),
-        textTheme: const TextTheme(
+        textTheme: GoogleFonts.nunitoTextTheme(const TextTheme(
           displayLarge: TextStyle(
             fontSize: 34,
             fontWeight: FontWeight.w800,
@@ -80,7 +81,7 @@ class AppTheme {
             color: slate,
             letterSpacing: 0.5,
           ),
-        ),
+        )),
         iconTheme: const IconThemeData(
           color: charcoal,
         ),

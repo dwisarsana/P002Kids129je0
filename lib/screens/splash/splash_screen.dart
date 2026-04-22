@@ -448,7 +448,7 @@ class _SplashScreenState extends State<SplashScreen>
             right: 0,
             child: FadeTransition(
               opacity: _fadeAnimation,
-              child: const Center(
+              child: Center(
                 child: Text(
                   'Powered by AI',
                   style: TextStyle(

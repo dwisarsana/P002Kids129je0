@@ -349,7 +349,7 @@ class _FuturisticStyleCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: const BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(15), bottomLeft: Radius.circular(15), bottomRight: Radius.circular(30)),
           image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
           boxShadow: [
             BoxShadow(
@@ -361,7 +361,7 @@ class _FuturisticStyleCard extends StatelessWidget {
         ),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(15), bottomLeft: Radius.circular(15), bottomRight: Radius.circular(30)),
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,

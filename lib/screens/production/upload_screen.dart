@@ -395,7 +395,7 @@ class _UploadScreenState extends State<UploadScreen>
                           ],
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(20), bottomLeft: Radius.circular(20), bottomRight: Radius.circular(40)),
                           child: Stack(
                             alignment: Alignment.center,
                             children: [

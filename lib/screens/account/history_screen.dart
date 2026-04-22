@@ -103,7 +103,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   Widget _imgError() => Container(
         color: AppTheme.charcoal.withValues(alpha: 0.3),
-        child: const Center(
+        child: Center(
           child: Icon(Icons.broken_image_rounded, color: AppTheme.charcoal.withValues(alpha: 0.3), size: 32),
         ),
       );

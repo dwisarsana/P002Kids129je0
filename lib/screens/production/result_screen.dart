@@ -560,7 +560,7 @@ class _ImageError extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: AppTheme.charcoal,
-      child: const Center(
+      child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
