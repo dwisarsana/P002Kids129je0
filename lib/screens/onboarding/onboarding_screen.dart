@@ -1,8 +1,9 @@
 // lib/screens/onboarding/onboarding_screen.dart
-// Garden AI — Onboarding Screen (Enhanced Survey for User Retention)
+// KidsRoom AI — Onboarding Screen (Enhanced Survey for User Retention)
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../theme/app_theme.dart';
 import '../main/home_screen.dart';
@@ -23,11 +24,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   final TextEditingController _nameCtl = TextEditingController();
   bool _isFinalizing = false;
 
-  // ── 7 Survey questions for garden personalization ──
+  // ── 7 Survey questions for KidsRoom personalization ──
   final List<_Question> _questions = [
     _Question(
       keyName: 'q_type',
-      title: 'What\'s your garden type?',
+      title: 'What\'s your Kids Room type?',
       subtitle: 'We\'ll tailor AI designs to fit your landscape.',
       icon: Icons.eco_rounded,
       accentEmoji: '🌿',
@@ -47,9 +48,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       accentEmoji: '✨',
       options: [
         _Option('Modern Sanctuary', Icons.spa_rounded),
-        _Option('English Cottage', Icons.villa_rounded),
-        _Option('Zen Garden', Icons.self_improvement_rounded),
-        _Option('Productive Vegetable', Icons.agriculture_rounded),
+        _Option('Fairy Tale Castle', Icons.villa_rounded),
+        _Option('Zen KidsRoom', Icons.self_improvement_rounded),
+        _Option('Creative Playroom', Icons.agriculture_rounded),
         _Option('Entertaining Space', Icons.groups_rounded),
       ],
     ),
@@ -61,9 +62,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       accentEmoji: '🎨',
       options: [
         _Option('Tropical Jungle', Icons.wb_sunny_rounded),
-        _Option('Minimalist Desert', Icons.terrain_rounded),
+        _Option('Cozy Reading Nook', Icons.terrain_rounded),
         _Option('Mediterranean', Icons.sunny_snowing),
-        _Option('Wildflower Meadow', Icons.filter_vintage_rounded),
+        _Option('Under the Sea', Icons.filter_vintage_rounded),
         _Option('Geometric Modern', Icons.architecture_rounded),
       ],
     ),
@@ -111,7 +112,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     ),
     _Question(
       keyName: 'q_usage',
-      title: 'Main garden usage?',
+      title: 'Main Kids Room usage?',
       subtitle: 'Helps us design for your lifestyle.',
       icon: Icons.beach_access_rounded,
       accentEmoji: '🍹',
@@ -242,7 +243,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       Image.asset('assets/icon.png', width: 30, height: 30),
                       const SizedBox(width: 10),
                       const Text(
-                        'GARDEN AI',
+                        'Kids Room AI',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -412,7 +413,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       ),
                       const SizedBox(height: 24),
                       const Text(
-                        'Building your\npersonalized garden...',
+                        'Building your\npersonalized Kids Room...',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -483,20 +484,20 @@ class _IntroPage extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(32),
               child: Image.asset(
-                'assets/images/AI Garden Transformation.jpeg',
+                'assets/images/AI kids_room Transformation.jpeg',
                 fit: BoxFit.cover,
               ),
             ),
           ),
           const SizedBox(height: 36),
           const Text(
-            'Redesign Your\nGarden with AI',
+            'Redesign Your\nKids Room with AI',
             style: TextStyle(color: Colors.white, fontSize: 34, fontWeight: FontWeight.w800, height: 1.15, letterSpacing: -0.8),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 14),
           Text(
-            'Upload a photo and let AI instantly redesign your garden — from tropical jungle to zen sanctuary.',
+            'Upload a photo and let AI instantly redesign your Kids Room — from space explorer to mermaid cove.',
             style: TextStyle(color: Colors.white.withValues(alpha: 0.55), fontSize: 15.5, height: 1.55),
             textAlign: TextAlign.center,
           ),

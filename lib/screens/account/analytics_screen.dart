@@ -4,7 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import '../../theme/app_theme.dart';
 import '../../services/storage_service.dart';
-import '../../models/garden_model.dart';
+import '../../models/kids_room_model.dart';
 import '../../mock/mock_data.dart';
 import '../../widgets/glass_container.dart';
 
@@ -16,12 +16,12 @@ class AnalyticsScreen extends StatefulWidget {
 }
 
 class _AnalyticsScreenState extends State<AnalyticsScreen> {
-  late Future<List<GardenModel>> _gardensFuture;
+  late Future<List<KidsRoomModel>> _kidsRoomsFuture;
 
   @override
   void initState() {
     super.initState();
-    _gardensFuture = context.read<StorageService>().loadGardens();
+    _kidsRoomsFuture = context.read<StorageService>().loadkidsRooms();
   }
 
   @override
@@ -29,26 +29,26 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
     return Scaffold(
       backgroundColor: AppTheme.warmSand,
       appBar: AppBar(
-        title: const Text("Garden Profile"),
+        title: const Text("Kids Room Profile"),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: FutureBuilder<List<GardenModel>>(
-        future: _gardensFuture,
+      body: FutureBuilder<List<KidsRoomModel>>(
+        future: _kidsRoomsFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          final gardens = snapshot.data ?? [];
-          final allGardens = [...gardens, ...MockData.initialHistory];
+          final kidsRooms = snapshot.data ?? [];
+          final allkidsRooms = [...kidsRooms, ...MockData.initialHistory];
           
           // Analytics Logic
-          int total = allGardens.length;
+          int total = allkidsRooms.length;
           
           // Style Distribution
           final styleCounts = <String, int>{};
-          for (var g in allGardens) {
+          for (var g in allkidsRooms) {
             styleCounts[g.styleName] = (styleCounts[g.styleName] ?? 0) + 1;
           }
           
@@ -56,7 +56,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
 
           // Season Distribution (mock settings check)
           final seasonCounts = <String, int>{};
-          for (var g in allGardens) {
+          for (var g in allkidsRooms) {
             final season = g.settings['season'] as String? ?? 'Unknown';
             seasonCounts[season] = (seasonCounts[season] ?? 0) + 1;
           }

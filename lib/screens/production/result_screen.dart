@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/garden_style.dart';
+import '../../models/kids_room_style.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
 import '../main/main_screen.dart';
@@ -15,7 +15,7 @@ import '../account/history_screen.dart';
 class ResultScreen extends StatefulWidget {
   final String originalPath;
   final String resultPath;
-  final GardenStyle style;
+  final KidsRoomStyle style;
   final Map<String, dynamic> settings;
 
   const ResultScreen({
@@ -67,10 +67,10 @@ class _ResultScreenState extends State<ResultScreen> {
     return const _ImageError();
   }
 
-  void _saveGarden() async {
+  void _saveKidsRoom() async {
     HapticFeedback.mediumImpact();
     final storage = context.read<StorageService>();
-    final current = await storage.loadGardens();
+    final current = await storage.loadkidsRooms();
 
     // Avoid duplicate saves (already saved by GeneratingScreen)
     final alreadySaved = current.any((g) =>
@@ -78,7 +78,7 @@ class _ResultScreenState extends State<ResultScreen> {
         g.originalImagePath == widget.originalPath);
 
     if (!alreadySaved) {
-      await storage.saveGardens(current); // already saved by generating screen
+      await storage.savekidsRooms(current); // already saved by generating screen
     }
 
     if (mounted) {
@@ -92,7 +92,7 @@ class _ResultScreenState extends State<ResultScreen> {
             children: [
               Icon(Icons.check_circle_rounded, color: Colors.white, size: 20),
               SizedBox(width: 10),
-              Text('Saved to your garden collection!',
+              Text('Saved to your Kids Room collection!',
                   style: TextStyle(fontWeight: FontWeight.w500)),
             ],
           ),
@@ -256,7 +256,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 Image.asset('assets/icon.png', width: 32, height: 32),
                 const SizedBox(width: 8),
                 const Text(
-                  'Garden AI',
+                  'Kids Room AI',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w800,
@@ -272,10 +272,10 @@ class _ResultScreenState extends State<ResultScreen> {
                     // Perspective: We need the ID to update storage.
                     // For now, we'll try to find it by path.
                     final storage = context.read<StorageService>();
-                    final gardens = await storage.loadGardens();
-                    final index = gardens.indexWhere((g) => g.resultImagePath == widget.resultPath);
+                    final kidsRooms = await storage.loadkidsRooms();
+                    final index = kidsRooms.indexWhere((g) => g.resultImagePath == widget.resultPath);
                     if (index != -1) {
-                      await storage.toggleFavorite(gardens[index].id);
+                      await storage.toggleFavorite(kidsRooms[index].id);
                     }
                   },
                   child: Container(
@@ -423,7 +423,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         child: SizedBox(
                           height: 56,
                           child: ElevatedButton(
-                            onPressed: _isSaved ? null : _saveGarden,
+                            onPressed: _isSaved ? null : _saveKidsRoom,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: _isSaved
                                   ? Colors.white.withValues(alpha: 0.1)

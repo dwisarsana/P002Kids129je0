@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../theme/app_theme.dart';
-import '../../models/garden_style.dart';
+import '../../models/kids_room_style.dart';
 import '../../mock/mock_data.dart';
 import '../../widgets/glass_container.dart';
 import 'generating_screen.dart';
@@ -11,7 +11,7 @@ import '../../src/constant.dart';
 
 class CustomStudioScreen extends StatefulWidget {
   final String imagePath;
-  final GardenStyle selectedStyle;
+  final KidsRoomStyle selectedStyle;
 
   const CustomStudioScreen({
     super.key,
@@ -235,7 +235,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Adjust every detail to create your perfect ${widget.selectedStyle.name.toLowerCase()} garden',
+                          'Adjust every detail to create your perfect ${widget.selectedStyle.name.toLowerCase()} KidsRoom',
                           style: TextStyle(
                             color: Colors.white.withValues(alpha: 0.6),
                             fontSize: 12,
@@ -357,7 +357,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
                                     color: Colors.white, size: 20),
                                 SizedBox(width: 10),
                                 Text(
-                                  'Generate Garden Design',
+                                  'Generate Kids Room Design',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
@@ -600,7 +600,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: MockData.plantCategories.map((cat) {
+            children: MockData.toyCategories.map((cat) {
               return Container(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 14, vertical: 10),
@@ -660,9 +660,9 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
             height: 90,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: MockData.hardscapeOptions.length,
+              itemCount: MockData.furnitureOptions.length,
               itemBuilder: (context, index) {
-                final option = MockData.hardscapeOptions[index];
+                final option = MockData.furnitureOptions[index];
                 final isSelected = _selectedPathway == index;
                 return GestureDetector(
                   onTap: () {
@@ -717,18 +717,18 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
           const SizedBox(height: 24),
 
           // Additional hardscape options
-          _SectionLabel(label: 'Garden Structures', icon: Icons.fence_rounded),
+          _SectionLabel(label: 'Room Themes & Structures', icon: Icons.fence_rounded),
           const SizedBox(height: 12),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: [
-              _ToggleChip(label: '🏡 Pergola', isOn: true),
+              _ToggleChip(label: '🧸 Toy Chest', isOn: true),
               _ToggleChip(label: '🪑 Seating', isOn: false),
-              _ToggleChip(label: '🔥 Fire Pit', isOn: false),
-              _ToggleChip(label: '🏗️ Raised Beds', isOn: true),
-              _ToggleChip(label: '🧱 Retaining Wall', isOn: false),
-              _ToggleChip(label: '🚪 Garden Gate', isOn: false),
+              _ToggleChip(label: '🔥 Night Light', isOn: false),
+              _ToggleChip(label: '🏗️ Bunk Bed', isOn: true),
+              _ToggleChip(label: '🎨 Art Station', isOn: false),
+              _ToggleChip(label: '🚪 Room Door', isOn: false),
             ],
           ),
         ],
@@ -841,7 +841,7 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _SliderRow(
-            label: 'Water Element Scale',
+            label: 'Play Area Scale',
             value: _water,
             icon: Icons.water_drop_rounded,
             activeColor: AppTheme.skyBlue,
@@ -852,15 +852,15 @@ class _CustomStudioScreenState extends State<CustomStudioScreen>
 
           const SizedBox(height: 20),
 
-          _SectionLabel(label: 'Water Feature Type', icon: Icons.waves_rounded),
+          _SectionLabel(label: 'Play Feature Type', icon: Icons.waves_rounded),
           const SizedBox(height: 12),
           SizedBox(
             height: 100,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: MockData.waterFeatures.length,
+              itemCount: MockData.playFeatures.length,
               itemBuilder: (context, index) {
-                final option = MockData.waterFeatures[index];
+                final option = MockData.playFeatures[index];
                 final isSelected = _selectedWaterFeature == index;
                 return GestureDetector(
                   onTap: () {

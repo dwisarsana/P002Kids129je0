@@ -1,4 +1,4 @@
-// Garden AI — Splash Screen (Enhanced UI)
+// KidsRoom AI — Splash Screen (Enhanced UI)
 
 import 'dart:async';
 import 'dart:math' as math;
@@ -19,7 +19,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
-  String _loadingText = 'Starting Garden AI...';
+  String _loadingText = 'Starting Kids Room AI...';
   int _loadingStep = 0;
 
   late final AnimationController _logoScale;
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   static const _loadingSteps = [
     'Analyzing landscape layout...',
-    'Preparing garden styles...',
+    'Preparing Kids Room styles...',
     'Loading AI growth models...',
     'Setting up your sanctuary...',
     'Almost ready...',
@@ -284,13 +284,13 @@ class _SplashScreenState extends State<SplashScreen>
                   opacity: _fadeAnimation,
                   child: Column(
                     children: [
-                      // "GARDEN" in white, "AI" in accent — editorial split
+                      // "KidsRoom" in white, "AI" in accent — editorial split
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           const Text(
-                            'GARDEN',
+                            'Kids Room',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 34,

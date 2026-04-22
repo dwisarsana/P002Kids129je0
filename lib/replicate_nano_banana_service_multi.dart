@@ -26,7 +26,7 @@ class NetworkException implements Exception {
 /// Configuration for image generation that controls how similar
 /// the output is to the input image.
 class GenerationConfig {
-  /// How much to preserve the original room structure (0.0 - 1.0).
+  /// How much to preserve the original KidsRoom structure (0.0 - 1.0).
   /// Higher = more faithful to original layout.
   final double structureStrength;
 
@@ -66,7 +66,7 @@ class GenerationConfig {
   );
 
   /// Preset: Balanced - preserves layout but allows material changes.
-  /// Default for garden redesign.
+  /// Default for KidsRoom redesign.
   factory GenerationConfig.balanced() => const GenerationConfig(
     structureStrength: 0.92,
     imageStrength: 0.85,
@@ -75,7 +75,7 @@ class GenerationConfig {
   );
 
   /// Preset: More creative - allows bigger design changes
-  /// while keeping room structure.
+  /// while keeping KidsRoom structure.
   factory GenerationConfig.creative() => const GenerationConfig(
     structureStrength: 0.85,
     imageStrength: 0.75,
@@ -102,25 +102,25 @@ class GenerationConfig {
   }
 }
 
-class ReplicateGardenAIService {
-  ReplicateGardenAIService({SafePromptFilter? filter})
+class ReplicateKidsRoomAIService {
+  ReplicateKidsRoomAIService({SafePromptFilter? filter})
     : _filter = filter ?? SafePromptFilter(mode: 'strict');
 
   static const _apiToken = 'API_KEY';
   static const _model =
-      'landscaping/garden-ai'; // Generic garden model placeholder
+      'landscaping/KidsRoom-ai'; // Generic KidsRoom model placeholder
 
   final _client = http.Client();
   final SafePromptFilter _filter;
 
-  /// Builds an optimized prompt for garden image-to-image generation.
+  /// Builds an optimized prompt for KidsRoom image-to-image generation.
   ///
   /// The prompt is constructed to:
-  /// 1. Explicitly preserve outdoor structure, perspective, and dimensions
-  /// 2. Only modify the specified landscape materials
-  /// 3. Maintain lighting consistency with the original garden photo
+  /// 1. Explicitly preserve indoor structure, perspective, and dimensions
+  /// 2. Only modify the specified interior materials
+  /// 3. Maintain lighting consistency with the original KidsRoom photo
   /// 4. Keep the same camera angle and composition
-  static String buildGardenPrompt({
+  static String buildKidsRoomPrompt({
     required Map<String, dynamic> config,
     Map<String, dynamic>? layoutConfig,
   }) {
@@ -128,14 +128,14 @@ class ReplicateGardenAIService {
 
     // ── Structure Preservation Prefix ──
     parts.add(
-      'Transform this existing garden photo while preserving the exact same '
-      'outdoor structure, dimensions, camera angle, perspective, boundary positions, '
+      'Transform this existing KidsRoom photo while preserving the exact same '
+      'indoor structure, dimensions, camera angle, perspective, boundary positions, '
       'and spatial layout.',
     );
 
     // ── Style ──
     final style = config['style'] as String? ?? 'Modern';
-    parts.add('Apply a $style garden design style.');
+    parts.add('Apply a $style KidsRoom design style.');
 
     // ── Cabinet ──
     final cabinet = config['cabinet_finish'] as String?;
@@ -218,14 +218,14 @@ class ReplicateGardenAIService {
 
       if (hasIsland) {
         parts.add(
-          'Include a decorative garden island feature if space allows.',
+          'Include a decorative KidsRoom island feature if space allows.',
         );
       }
       if (hasBreakfastBar) {
         parts.add('Add a breakfast bar counter extension for casual seating.');
       }
       if (openConcept) {
-        parts.add('Maintain an open concept flow to adjacent rooms.');
+        parts.add('Maintain an open concept flow to adjacent kidsRooms.');
       }
     }
 
@@ -233,7 +233,7 @@ class ReplicateGardenAIService {
     parts.add(
       'Photorealistic result, professional interior photography, '
       'consistent lighting and shadows, high resolution, 8K quality, '
-      'maintaining exact same room proportions and architecture.',
+      'maintaining exact same KidsRoom proportions and architecture.',
     );
 
     return parts.join(' ');
@@ -291,9 +291,9 @@ class ReplicateGardenAIService {
     return 'data:image/jpeg;base64,$b64';
   }
 
-  /// Generates a garden redesign image using image-to-image transformation.
+  /// Generates a KidsRoom redesign image using image-to-image transformation.
   ///
-  /// [images] - Source garden photo(s) as byte arrays.
+  /// [images] - Source KidsRoom photo(s) as byte arrays.
   /// [prompt] - Text description of desired changes.
   /// [config] - Generation parameters controlling similarity to original.
   Future<String?> generateMultiBytes({
@@ -332,8 +332,8 @@ class ReplicateGardenAIService {
 
         // Negative prompt to prevent unwanted changes
         'negative_prompt':
-            'different outdoor space, different angle, different perspective, '
-            'different layout, distorted garden, warped landscape, '
+            'different indoor space, different angle, different perspective, '
+            'different layout, distorted KidsRoom, warped interior, '
             'different fence positions, different yard size, '
             'cartoon, illustration, painting, sketch, drawing, '
             'blurry, low quality, artifacts, watermark, text',
@@ -341,7 +341,7 @@ class ReplicateGardenAIService {
         // Input image(s)
         'image_input': dataUrls,
 
-        // Structure preservation - how much to keep room geometry
+        // Structure preservation - how much to keep KidsRoom geometry
         'structure_strength': config.structureStrength,
 
         // Image similarity - how close output looks to input
