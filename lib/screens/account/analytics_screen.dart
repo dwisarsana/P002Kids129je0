@@ -29,7 +29,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
     return Scaffold(
       backgroundColor: AppTheme.warmSand,
       appBar: AppBar(
-        title: const Text("Kids Room Profile"),
+        title: Text("Kids Room Profile"),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -105,7 +105,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                           value: e.value.toDouble(),
                           title: "${((e.value / total) * 100).toInt()}%",
                           radius: 50,
-                          titleStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+                          titleStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppTheme.charcoal),
                         );
                       }).toList(),
                     ),
@@ -128,7 +128,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                       Colors.grey
                     ][index % 6];
                     return Chip(
-                      label: Text(key, style: const TextStyle(color: Colors.white, fontSize: 10)),
+                      label: Text(key, style: TextStyle(color: AppTheme.charcoal, fontSize: 10)),
                       backgroundColor: color,
                     );
                   }).toList(),
@@ -150,7 +150,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                             getTitlesWidget: (value, meta) {
                               final seasons = seasonCounts.keys.toList();
                               if (value.toInt() < seasons.length) {
-                                return Text(seasons[value.toInt()], style: const TextStyle(fontSize: 10));
+                                return Text(seasons[value.toInt()], style: TextStyle(fontSize: 10));
                               }
                               return const SizedBox();
                             },
@@ -197,15 +197,15 @@ class _StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlassContainer(
-      color: Colors.white,
+      color: AppTheme.charcoal,
       opacity: 0.5,
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
           Icon(icon, size: 30, color: AppTheme.mossGreen),
           const SizedBox(height: 10),
-          Text(value, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          Text(label, style: const TextStyle(fontSize: 12, color: Colors.black54)),
+          Text(value, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text(label, style: TextStyle(fontSize: 12, color: Colors.black54)),
         ],
       ),
     );

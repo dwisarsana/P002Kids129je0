@@ -137,9 +137,9 @@ class _CreateButton extends StatelessWidget {
             ),
           ],
         ),
-        child: const Icon(
+        child: Icon(
           Icons.add_rounded,
-          color: Colors.white,
+          color: AppTheme.charcoal,
           size: 32,
         ),
       ).animate(onPlay: (c) => c.repeat(reverse: true)).scale(

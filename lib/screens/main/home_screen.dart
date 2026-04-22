@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _errorImg() => Container(
         color: AppTheme.charcoal.withValues(alpha: 0.1),
-        child: const Icon(Icons.broken_image_rounded, color: AppTheme.slate, size: 24),
+        child: Icon(Icons.broken_image_rounded, color: AppTheme.slate, size: 24),
       );
 
   @override
@@ -77,12 +77,12 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              title: const Text(
+              title: Text(
                 'Kids Room AI',
                 style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: 22,
-                  color: Colors.white,
+                  color: AppTheme.charcoal,
                   letterSpacing: 1.0,
                 ),
               ),
@@ -110,7 +110,7 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: GlassContainer(
                   padding: const EdgeInsets.all(24),
-                  color: Colors.white,
+                  color: AppTheme.charcoal,
                   opacity: 0.8,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,7 +140,7 @@ class HomeScreen extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.all(10),
                             decoration: const BoxDecoration(color: AppTheme.sunGlow, shape: BoxShape.circle),
-                            child: const Icon(Icons.wb_sunny_rounded, color: Colors.white, size: 20),
+                            child: Icon(Icons.wb_sunny_rounded, color: AppTheme.charcoal, size: 20),
                           ),
                         ],
                       ),
@@ -182,7 +182,7 @@ class HomeScreen extends StatelessWidget {
                   Text("Recent Visions", style: Theme.of(context).textTheme.titleLarge?.copyWith(color: AppTheme.mossGreen, fontWeight: FontWeight.w900, letterSpacing: -0.5)),
                   GestureDetector(
                     onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const HistoryScreen())),
-                    child: const Icon(Icons.arrow_forward_rounded, color: AppTheme.mossGreen),
+                    child: Icon(Icons.arrow_forward_rounded, color: AppTheme.mossGreen),
                   ),
                 ],
               ),
@@ -273,7 +273,7 @@ class _HeaderIconAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(icon, color: Colors.white, size: 24),
+      icon: Icon(icon, color: AppTheme.charcoal, size: 24),
       onPressed: onTap,
     );
   }
@@ -317,13 +317,13 @@ class _GlassProjectCard extends StatelessWidget {
                   children: [
                     Text(
                       kidsRoom.styleName,
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13),
+                      style: TextStyle(color: AppTheme.charcoal, fontWeight: FontWeight.bold, fontSize: 13),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       "${kidsRoom.timestamp.day}/${kidsRoom.timestamp.month}",
-                      style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 10),
+                      style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.6), fontSize: 10),
                     ),
                   ],
                 ),
@@ -374,7 +374,7 @@ class _FuturisticStyleCard extends StatelessWidget {
             children: [
               Text(
                 name,
-                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 14, letterSpacing: 0.5),
+                style: TextStyle(color: AppTheme.charcoal, fontWeight: FontWeight.w900, fontSize: 14, letterSpacing: 0.5),
                 textAlign: TextAlign.center,
               ),
             ],

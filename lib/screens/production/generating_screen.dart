@@ -265,12 +265,12 @@ class _GeneratingScreenState extends State<GeneratingScreen>
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.auto_awesome_rounded,
+              Icon(Icons.auto_awesome_rounded,
                   color: AppTheme.mintGreen, size: 16),
               const SizedBox(width: 8),
               Text(
                 widget.style.name,
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppTheme.mintGreen,
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
@@ -285,7 +285,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
         Text(
           'Creating Your Kids Room',
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: Colors.white,
+                color: AppTheme.charcoal,
                 fontWeight: FontWeight.w800,
               ),
           textAlign: TextAlign.center,
@@ -299,7 +299,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
             _statusMessage,
             key: ValueKey(_statusMessage),
             style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.6),
+              color: AppTheme.charcoal.withValues(alpha: 0.6),
               fontSize: 14,
             ),
             textAlign: TextAlign.center,
@@ -317,13 +317,13 @@ class _GeneratingScreenState extends State<GeneratingScreen>
                 Text(
                   'Progress',
                   style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.5),
+                    color: AppTheme.charcoal.withValues(alpha: 0.5),
                     fontSize: 12,
                   ),
                 ),
                 Text(
                   '${(_progress * 100).toInt()}%',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppTheme.mintGreen,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -340,7 +340,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
                 builder: (_, val, __) => LinearProgressIndicator(
                   value: val,
                   minHeight: 8,
-                  backgroundColor: Colors.white.withValues(alpha: 0.1),
+                  backgroundColor: AppTheme.slate.withValues(alpha: 0.1),
                   valueColor:
                       const AlwaysStoppedAnimation<Color>(AppTheme.mossGreen),
                 ),
@@ -380,7 +380,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
             shape: BoxShape.circle,
             color: Colors.redAccent.withValues(alpha: 0.15),
           ),
-          child: const Icon(
+          child: Icon(
             Icons.error_outline_rounded,
             size: 52,
             color: Colors.redAccent,
@@ -390,7 +390,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
         Text(
           'Generation Failed',
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: Colors.white,
+                color: AppTheme.charcoal,
                 fontWeight: FontWeight.w700,
               ),
         ),
@@ -398,7 +398,7 @@ class _GeneratingScreenState extends State<GeneratingScreen>
         Text(
           _errorMsg,
           style: TextStyle(
-            color: Colors.white.withValues(alpha: 0.6),
+            color: AppTheme.charcoal.withValues(alpha: 0.6),
             fontSize: 14,
             height: 1.4,
           ),
@@ -411,14 +411,14 @@ class _GeneratingScreenState extends State<GeneratingScreen>
               child: OutlinedButton(
                 onPressed: () => Navigator.pop(context),
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.white70,
-                  side: const BorderSide(color: Colors.white24),
+                  foregroundColor: AppTheme.slate,
+                  side: const BorderSide(color: AppTheme.charcoal.withValues(alpha: 0.24)),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: const Text('Go Back'),
+                child: Text('Go Back'),
               ),
             ),
             const SizedBox(width: 16),
@@ -439,9 +439,9 @@ class _GeneratingScreenState extends State<GeneratingScreen>
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   'Try Again',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                  style: TextStyle(color: AppTheme.charcoal, fontWeight: FontWeight.w600),
                 ),
               ),
             ),

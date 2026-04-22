@@ -253,19 +253,19 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                             strokeWidth: 2,
                             valueColor: const AlwaysStoppedAnimation(
                                 AppTheme.mossGreen),
-                            backgroundColor: Colors.white.withValues(alpha: 0.1),
+                            backgroundColor: AppTheme.slate.withValues(alpha: 0.1),
                           ),
                         )
                       else
-                        const Icon(Icons.check_circle_rounded,
+                        Icon(Icons.check_circle_rounded,
                             color: AppTheme.mossGreen, size: 22),
                       const SizedBox(width: 12),
                       Text(
                         _scanComplete
                             ? 'Analysis Complete!'
                             : 'Analyzing Your Space...',
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: AppTheme.charcoal,
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 0.3,
@@ -294,7 +294,7 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                                   ? AppTheme.mossGreen.withValues(alpha: 0.2)
                                   : isCurrent
                                       ? AppTheme.sunGlow.withValues(alpha: 0.2)
-                                      : Colors.white.withValues(alpha: 0.05),
+                                      : AppTheme.slate.withValues(alpha: 0.05),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Icon(
@@ -315,7 +315,7 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                               step['label'] as String,
                               style: TextStyle(
                                 color: isDone
-                                    ? Colors.white70
+                                    ? AppTheme.slate
                                     : isCurrent
                                         ? Colors.white
                                         : Colors.white24,
@@ -351,7 +351,7 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                       height: 4,
                       child: LinearProgressIndicator(
                         value: _currentStep / _analysisSteps.length,
-                        backgroundColor: Colors.white.withValues(alpha: 0.1),
+                        backgroundColor: AppTheme.slate.withValues(alpha: 0.1),
                         valueColor: AlwaysStoppedAnimation(
                           _scanComplete
                               ? AppTheme.mossGreen
@@ -404,8 +404,8 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                       const SizedBox(width: 8),
                       Text(
                         _scanComplete ? 'DONE' : 'SCANNING',
-                        style: const TextStyle(
-                          color: Colors.white70,
+                        style: TextStyle(
+                          color: AppTheme.charcoal.withValues(alpha: 0.7),
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 1.5,
@@ -423,8 +423,8 @@ class _SceneDetectionScreenState extends State<SceneDetectionScreen>
                   ),
                   child: Text(
                     '${(_currentStep / _analysisSteps.length * 100).toInt()}%',
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: AppTheme.charcoal,
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
                     ),
@@ -529,8 +529,8 @@ class _DetectionTag extends StatelessWidget {
           const SizedBox(width: 6),
           Text(
             label,
-            style: const TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: AppTheme.charcoal,
               fontSize: 11,
               fontWeight: FontWeight.w500,
             ),
@@ -544,7 +544,7 @@ class _DetectionTag extends StatelessWidget {
             ),
             child: Text(
               '${(confidence * 100).toInt()}%',
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppTheme.mintGreen,
                 fontSize: 9,
                 fontWeight: FontWeight.w700,

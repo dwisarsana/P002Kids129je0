@@ -104,7 +104,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Widget _imgError() => Container(
         color: AppTheme.charcoal.withValues(alpha: 0.3),
         child: const Center(
-          child: Icon(Icons.broken_image_rounded, color: Colors.white30, size: 32),
+          child: Icon(Icons.broken_image_rounded, color: AppTheme.charcoal.withValues(alpha: 0.3), size: 32),
         ),
       );
 
@@ -126,20 +126,20 @@ class _HistoryScreenState extends State<HistoryScreen> {
           builder: (_) => AlertDialog(
             backgroundColor: AppTheme.charcoal,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            title: const Text('Delete Kids Room?',
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+            title: Text('Delete Kids Room?',
+                style: TextStyle(color: AppTheme.charcoal, fontWeight: FontWeight.w700)),
             content: Text(
               'Remove $label from your history? This cannot be undone.',
-              style: TextStyle(color: Colors.white.withValues(alpha: 0.7)),
+              style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.7)),
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(ctx, false),
-                child: const Text('Cancel', style: TextStyle(color: Colors.white60)),
+                child: Text('Cancel', style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.6))),
               ),
               TextButton(
                 onPressed: () => Navigator.pop(ctx, true),
-                child: const Text('Delete',
+                child: Text('Delete',
                     style: TextStyle(
                         color: Colors.redAccent, fontWeight: FontWeight.w700)),
               ),
@@ -169,11 +169,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
               height: 4,
               margin: const EdgeInsets.only(bottom: 20),
               decoration: BoxDecoration(
-                  color: Colors.white24, borderRadius: BorderRadius.circular(2)),
+                  color: AppTheme.charcoal.withValues(alpha: 0.24), borderRadius: BorderRadius.circular(2)),
             ),
-            const Text('Sort By',
+            Text('Sort By',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: AppTheme.charcoal,
                     fontWeight: FontWeight.w700,
                     fontSize: 18)),
             const SizedBox(height: 16),
@@ -190,7 +190,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   decoration: BoxDecoration(
                     color: selected
                         ? AppTheme.mossGreen.withValues(alpha: 0.2)
-                        : Colors.white.withValues(alpha: 0.05),
+                        : AppTheme.slate.withValues(alpha: 0.05),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
                       color: selected
@@ -201,12 +201,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   child: Row(
                     children: [
                       Icon(opt.icon,
-                          color: selected ? AppTheme.mintGreen : Colors.white54,
+                          color: selected ? AppTheme.mintGreen : AppTheme.slate,
                           size: 20),
                       const SizedBox(width: 12),
                       Text(opt.label,
                           style: TextStyle(
-                            color: selected ? AppTheme.mintGreen : Colors.white70,
+                            color: selected ? AppTheme.mintGreen : AppTheme.slate,
                             fontWeight: selected
                                 ? FontWeight.w700
                                 : FontWeight.w400,
@@ -214,7 +214,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           )),
                       const Spacer(),
                       if (selected)
-                        const Icon(Icons.check_rounded,
+                        Icon(Icons.check_rounded,
                             color: AppTheme.mintGreen, size: 18),
                     ],
                   ),
@@ -263,7 +263,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         icon: Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: AppTheme.charcoal,
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
@@ -272,7 +272,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               ),
                             ],
                           ),
-                          child: const Icon(Icons.arrow_back_ios_new_rounded, color: AppTheme.charcoal, size: 18),
+                          child: Icon(Icons.arrow_back_ios_new_rounded, color: AppTheme.charcoal, size: 18),
                         ),
                         onPressed: () => Navigator.pop(context),
                       ),
@@ -297,7 +297,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         icon: Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: AppTheme.charcoal,
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
@@ -306,7 +306,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               ),
                             ],
                           ),
-                          child: const Icon(Icons.home_rounded, color: AppTheme.mossGreen, size: 20),
+                          child: Icon(Icons.home_rounded, color: AppTheme.mossGreen, size: 20),
                         ),
                         onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
                       ),
@@ -366,7 +366,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                 shape: BoxShape.circle,
                                 color: AppTheme.mossGreen.withValues(alpha: 0.08),
                               ),
-                              child: const Icon(Icons.eco_rounded,
+                              child: Icon(Icons.eco_rounded,
                                   size: 52, color: AppTheme.mintGreen),
                             ),
                             const SizedBox(height: 20),
@@ -538,8 +538,8 @@ class _HistoryCard extends StatelessWidget {
                         children: [
                           Text(
                             kidsRoom.styleName,
-                            style: const TextStyle(
-                              color: Colors.white,
+                            style: TextStyle(
+                              color: AppTheme.charcoal,
                               fontWeight: FontWeight.w700,
                               fontSize: 17,
                             ),
@@ -549,14 +549,14 @@ class _HistoryCard extends StatelessWidget {
                           const SizedBox(height: 2),
                           Text(
                             _formatDate(kidsRoom.timestamp),
-                            style: const TextStyle(
-                                color: Colors.white60, fontSize: 12),
+                            style: TextStyle(
+                                color: AppTheme.charcoal.withValues(alpha: 0.6), fontSize: 12),
                           ),
                         ],
                       ),
                     ),
                     if (kidsRoom.isFavorite)
-                      const Icon(Icons.favorite_rounded,
+                      Icon(Icons.favorite_rounded,
                           color: Colors.redAccent, size: 18),
                   ],
                 ),
@@ -576,13 +576,13 @@ class _HistoryCard extends StatelessWidget {
                           : Colors.black.withValues(alpha: 0.4),
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: isSelected ? AppTheme.mossGreen : Colors.white54,
+                        color: isSelected ? AppTheme.mossGreen : AppTheme.slate,
                         width: 2,
                       ),
                     ),
                     child: isSelected
-                        ? const Icon(Icons.check_rounded,
-                            color: Colors.white, size: 16)
+                        ? Icon(Icons.check_rounded,
+                            color: AppTheme.charcoal, size: 16)
                         : null,
                   ),
                 ),
@@ -643,7 +643,7 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
             height: 4,
             margin: const EdgeInsets.symmetric(vertical: 12),
             decoration: BoxDecoration(
-                color: Colors.white24, borderRadius: BorderRadius.circular(2)),
+                color: AppTheme.charcoal.withValues(alpha: 0.24), borderRadius: BorderRadius.circular(2)),
           ),
 
           // Before/After Comparison
@@ -673,12 +673,12 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          Container(width: 2, color: Colors.white),
+                          Container(width: 2, color: AppTheme.charcoal),
                           Container(
                             width: 40,
                             height: 40,
                             decoration: const BoxDecoration(
-                              color: Colors.white,
+                              color: AppTheme.charcoal,
                               shape: BoxShape.circle,
                             ),
                             child: const Row(
@@ -723,21 +723,21 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(g.styleName,
-                              style: const TextStyle(
-                                  color: Colors.white,
+                              style: TextStyle(
+                                  color: AppTheme.charcoal,
                                   fontSize: 22,
                                   fontWeight: FontWeight.w800)),
                           const SizedBox(height: 4),
                           Text(
                             _formatDate(g.timestamp),
-                            style: const TextStyle(
-                                color: Colors.white54, fontSize: 13),
+                            style: TextStyle(
+                                color: AppTheme.charcoal.withValues(alpha: 0.54), fontSize: 13),
                           ),
                         ],
                       ),
                     ),
                     if (g.isFavorite)
-                      const Icon(Icons.favorite_rounded,
+                      Icon(Icons.favorite_rounded,
                           color: Colors.redAccent, size: 22),
                   ],
                 ),
@@ -780,7 +780,7 @@ class _HistoryDetailSheetState extends State<HistoryDetailSheet> {
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       backgroundColor: isSuccess ? AppTheme.mossGreen : AppTheme.slate,
-      content: Text(msg, style: const TextStyle(fontWeight: FontWeight.w500)),
+      content: Text(msg, style: TextStyle(fontWeight: FontWeight.w500)),
     );
   }
 
@@ -852,12 +852,12 @@ class _FullscreenViewState extends State<_FullscreenView> {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Container(width: 2, color: Colors.white),
+                    Container(width: 2, color: AppTheme.charcoal),
                     Container(
                       width: 40,
                       height: 40,
                       decoration: const BoxDecoration(
-                          color: Colors.white, shape: BoxShape.circle),
+                          color: AppTheme.charcoal, shape: BoxShape.circle),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -893,8 +893,8 @@ class _FullscreenViewState extends State<_FullscreenView> {
                     color: Colors.black.withValues(alpha: 0.5),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.close_rounded,
-                      color: Colors.white, size: 22),
+                  child: Icon(Icons.close_rounded,
+                      color: AppTheme.charcoal, size: 22),
                 ),
               ),
             ),
@@ -911,8 +911,8 @@ class _FullscreenViewState extends State<_FullscreenView> {
                   ),
                   child: Text(
                     widget.kidsRoom.styleName,
-                    style: const TextStyle(
-                        color: Colors.white,
+                    style: TextStyle(
+                        color: AppTheme.charcoal,
                         fontWeight: FontWeight.w700,
                         fontSize: 16),
                   ),
@@ -942,7 +942,7 @@ class _RightClipper extends CustomClipper<Rect> {
 class _SliderLabel extends StatelessWidget {
   final String text;
   final Color color;
-  const _SliderLabel({required this.text, this.color = Colors.white70});
+  const _SliderLabel({required this.text, this.color = AppTheme.slate});
 
   @override
   Widget build(BuildContext context) {
@@ -1026,7 +1026,7 @@ class _SelectionBar extends StatelessWidget {
       child: Row(
         children: [
           Text('$count selected',
-              style: const TextStyle(
+              style: TextStyle(
                   color: AppTheme.mintGreen,
                   fontWeight: FontWeight.w600,
                   fontSize: 14)),
@@ -1035,8 +1035,8 @@ class _SelectionBar extends StatelessWidget {
             onTap: onSelectAll,
             child: Text(
               allSelected ? 'Deselect All' : 'Select All',
-              style: const TextStyle(
-                  color: Colors.white60,
+              style: TextStyle(
+                  color: AppTheme.charcoal.withValues(alpha: 0.6),
                   fontSize: 13,
                   fontWeight: FontWeight.w500),
             ),
@@ -1085,12 +1085,12 @@ class _DetailAction extends StatelessWidget {
         decoration: BoxDecoration(
           color: color == Colors.redAccent
               ? Colors.redAccent.withValues(alpha: 0.12)
-              : Colors.white.withValues(alpha: 0.06),
+              : AppTheme.slate.withValues(alpha: 0.06),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: color == Colors.redAccent
                 ? Colors.redAccent.withValues(alpha: 0.3)
-                : Colors.white.withValues(alpha: 0.08),
+                : AppTheme.slate.withValues(alpha: 0.08),
           ),
         ),
         child: Column(
@@ -1103,7 +1103,7 @@ class _DetailAction extends StatelessWidget {
               style: TextStyle(
                   color: color == Colors.redAccent
                       ? Colors.redAccent
-                      : Colors.white70,
+                      : AppTheme.slate,
                   fontSize: 11,
                   fontWeight: FontWeight.w500),
             ),

@@ -231,7 +231,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
           SizedBox(height: 20),
           Text(
             'Syncing with Store…',
-            style: TextStyle(color: Colors.white54, fontSize: 13),
+            style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.54), fontSize: 13),
           ),
         ],
       ),
@@ -245,16 +245,16 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
+            Icon(
               CupertinoIcons.wifi_exclamationmark,
               color: Colors.orange,
               size: 48,
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'Connection Error',
               style: TextStyle(
-                color: Colors.white,
+                color: AppTheme.charcoal,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -262,7 +262,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
             const SizedBox(height: 8),
             Text(
               _errorMessage ?? 'Store unavailable. Please try again later.',
-              style: const TextStyle(color: Colors.white54, fontSize: 13),
+              style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.54), fontSize: 13),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
@@ -272,7 +272,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
                 _fetchOfferings();
                 _fetchToken5();
               },
-              child: const Text(
+              child: Text(
                 'Retry Connection',
                 style: TextStyle(
                   color: Colors.black,
@@ -292,9 +292,9 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
       right: 10,
       child: SafeArea(
         child: IconButton(
-          icon: const Icon(
+          icon: Icon(
             CupertinoIcons.xmark_circle_fill,
-            color: Colors.white70,
+            color: AppTheme.charcoal.withValues(alpha: 0.7),
             size: 30,
           ),
           onPressed: () => Navigator.maybePop(context),
@@ -321,26 +321,26 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
                 width: 1.5,
               ),
             ),
-            child: const Icon(
+            child: Icon(
               Icons.eco_rounded,
               size: 40,
               color: AppTheme.mossGreen,
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
+          Text(
             'KidsRoom AI Premium',
             style: TextStyle(
-              color: Colors.white,
+              color: AppTheme.charcoal,
               fontSize: 26,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
-          const Text(
+          Text(
             'Transform your landscape with unlimited AI power and exclusive designs.',
-            style: TextStyle(color: Colors.white60, fontSize: 15),
+            style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.6), fontSize: 15),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 40),
@@ -358,9 +358,9 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
           const SizedBox(height: 40),
 
           if (packages.isEmpty)
-            const Text(
+            Text(
               'Loading available plans...',
-              style: TextStyle(color: Colors.white30),
+              style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.3)),
             )
           else
             ...packages.map((p) => _planCard(p)),
@@ -374,9 +374,9 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
           const SizedBox(height: 40),
           CupertinoButton(
             onPressed: _restorePurchases,
-            child: const Text(
+            child: Text(
               'Restore Purchases',
-              style: TextStyle(color: Colors.white54, fontSize: 13),
+              style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.54), fontSize: 13),
             ),
           ),
           const SizedBox(height: 12),
@@ -414,7 +414,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
                 color: AppTheme.mossGreen,
                 borderRadius: BorderRadius.circular(16),
                 onPressed: () => _buyPackage(pkg),
-                child: const Text(
+                child: Text(
                   'Start Yearly Subscription',
                   style: TextStyle(
                     color: Colors.black,
@@ -436,8 +436,8 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
         padding: const EdgeInsets.only(bottom: 16),
         child: Text(
           text,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: AppTheme.charcoal,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -456,7 +456,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(color: Colors.white70, fontSize: 14),
+              style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.7), fontSize: 14),
             ),
           ),
         ],
@@ -470,7 +470,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.05),
+        color: AppTheme.charcoal.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: AppTheme.mossGreen.withValues(alpha: 0.2)),
       ),
@@ -482,14 +482,14 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
               children: [
                 Text(
                   pkg.storeProduct.title,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: AppTheme.charcoal,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   pkg.storeProduct.description,
-                  style: const TextStyle(color: Colors.white38, fontSize: 12),
+                  style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.38), fontSize: 12),
                 ),
               ],
             ),
@@ -503,7 +503,7 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
                 ? const CupertinoActivityIndicator(color: Colors.black)
                 : Text(
                     pkg.storeProduct.priceString,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.black,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -519,13 +519,13 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.04),
+        color: AppTheme.charcoal.withValues(alpha: 0.04),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+        border: Border.all(color: AppTheme.charcoal.withValues(alpha: 0.1)),
       ),
       child: Row(
         children: [
-          const Icon(
+          Icon(
             CupertinoIcons.cube_box,
             color: AppTheme.mossGreen,
             size: 28,
@@ -538,28 +538,28 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
                 Text(
                   '5 AI Design Tokens',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: AppTheme.charcoal,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   'Permanent tokens, never expire',
-                  style: TextStyle(color: Colors.white38, fontSize: 11),
+                  style: TextStyle(color: AppTheme.charcoal.withValues(alpha: 0.38), fontSize: 11),
                 ),
               ],
             ),
           ),
           CupertinoButton(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            color: Colors.white.withValues(alpha: 0.1),
+            color: AppTheme.charcoal.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10),
             onPressed: _busyToken ? null : _buyToken5,
             child: _busyToken
                 ? const CupertinoActivityIndicator()
                 : Text(
                     _token5?.priceString ?? '...',
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: AppTheme.charcoal,
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
                     ),
@@ -575,8 +575,8 @@ class _KidsRoomAIPaywallState extends State<KidsRoomAIPaywall>
       onTap: () => launchUrl(Uri.parse(url)),
       child: Text(
         label,
-        style: const TextStyle(
-          color: Colors.white38,
+        style: TextStyle(
+          color: AppTheme.charcoal.withValues(alpha: 0.38),
           fontSize: 11,
           decoration: TextDecoration.underline,
         ),

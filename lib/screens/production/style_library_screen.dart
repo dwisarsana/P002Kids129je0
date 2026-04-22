@@ -107,8 +107,8 @@ class _StyleLibraryScreenState extends State<StyleLibraryScreen>
                   color: Colors.black.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Icon(Icons.arrow_back_ios_new_rounded,
-                    color: Colors.white, size: 18),
+                child: Icon(Icons.arrow_back_ios_new_rounded,
+                    color: AppTheme.charcoal, size: 18),
               ),
               onPressed: () => Navigator.pop(context),
             ),
@@ -121,8 +121,8 @@ class _StyleLibraryScreenState extends State<StyleLibraryScreen>
                     color: Colors.black.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.sort_rounded,
-                      color: Colors.white, size: 18),
+                  child: Icon(Icons.sort_rounded,
+                      color: AppTheme.charcoal, size: 18),
                 ),
                 onSelected: (value) => setState(() => _sortBy = value),
                 itemBuilder: (_) => [
@@ -143,7 +143,7 @@ class _StyleLibraryScreenState extends State<StyleLibraryScreen>
                     _isGridView
                         ? Icons.view_list_rounded
                         : Icons.grid_view_rounded,
-                    color: Colors.white,
+                    color: AppTheme.charcoal,
                     size: 18,
                   ),
                 ),
@@ -157,7 +157,7 @@ class _StyleLibraryScreenState extends State<StyleLibraryScreen>
                     color: Colors.black.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.home_rounded, color: Colors.white, size: 20),
+                  child: Icon(Icons.home_rounded, color: AppTheme.charcoal, size: 20),
                 ),
                 onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
               ),
@@ -193,8 +193,8 @@ class _StyleLibraryScreenState extends State<StyleLibraryScreen>
                 children: [
                   Text(
                     "Choose Your Vision",
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: AppTheme.charcoal,
                       fontWeight: FontWeight.w800,
                       fontSize: 18,
                     ),
@@ -203,7 +203,7 @@ class _StyleLibraryScreenState extends State<StyleLibraryScreen>
                   Text(
                     "${_filteredStyles.length} styles available",
                     style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.7),
+                      color: AppTheme.charcoal.withValues(alpha: 0.7),
                       fontSize: 10,
                       fontWeight: FontWeight.w400,
                     ),
@@ -261,7 +261,7 @@ class _StyleLibraryScreenState extends State<StyleLibraryScreen>
                         children: [
                           Text(
                             cat['emoji'] as String,
-                            style: const TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 16),
                           ),
                           const SizedBox(width: 8),
                           Text(
@@ -436,7 +436,7 @@ class _StyleGridCard extends StatelessWidget {
                         isFavorite
                             ? Icons.favorite_rounded
                             : Icons.favorite_border_rounded,
-                        color: isFavorite ? Colors.redAccent : Colors.white70,
+                        color: isFavorite ? Colors.redAccent : AppTheme.slate,
                         size: 18,
                       ),
                     ),
@@ -457,8 +457,8 @@ class _StyleGridCard extends StatelessWidget {
                     ),
                     child: Text(
                       style.difficulty,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: AppTheme.charcoal,
                         fontSize: 9,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 0.5,
@@ -479,8 +479,8 @@ class _StyleGridCard extends StatelessWidget {
                       children: [
                         Text(
                           style.name,
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style: TextStyle(
+                            color: AppTheme.charcoal,
                             fontWeight: FontWeight.w700,
                             fontSize: 15,
                             height: 1.2,
@@ -492,7 +492,7 @@ class _StyleGridCard extends StatelessWidget {
                               ? style.moodDescription
                               : style.description,
                           style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.75),
+                            color: AppTheme.charcoal.withValues(alpha: 0.75),
                             fontSize: 11,
                             height: 1.3,
                           ),
@@ -508,13 +508,13 @@ class _StyleGridCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 7, vertical: 3),
                               decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.15),
+                                color: AppTheme.charcoal.withValues(alpha: 0.15),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: Text(
                                 tag,
-                                style: const TextStyle(
-                                  color: Colors.white70,
+                                style: TextStyle(
+                                  color: AppTheme.charcoal.withValues(alpha: 0.7),
                                   fontSize: 9,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -526,13 +526,13 @@ class _StyleGridCard extends StatelessWidget {
                         // Rating
                         Row(
                           children: [
-                            const Icon(Icons.star_rounded,
+                            Icon(Icons.star_rounded,
                                 color: AppTheme.sunGlow, size: 14),
                             const SizedBox(width: 3),
                             Text(
                               style.popularity.toStringAsFixed(1),
-                              style: const TextStyle(
-                                color: Colors.white,
+                              style: TextStyle(
+                                color: AppTheme.charcoal,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -619,7 +619,7 @@ class _StyleListCard extends StatelessWidget {
                       Expanded(
                         child: Text(
                           style.name,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 15,
                             color: AppTheme.charcoal,
@@ -654,12 +654,12 @@ class _StyleListCard extends StatelessWidget {
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      const Icon(Icons.star_rounded,
+                      Icon(Icons.star_rounded,
                           color: AppTheme.sunGlow, size: 14),
                       const SizedBox(width: 3),
                       Text(
                         style.popularity.toStringAsFixed(1),
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           color: AppTheme.deepSoil,
@@ -687,7 +687,7 @@ class _StyleListCard extends StatelessWidget {
                         ),
                         child: Text(
                           style.difficulty,
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: AppTheme.mossGreen,
                             fontSize: 10,
                             fontWeight: FontWeight.w600,
@@ -805,7 +805,7 @@ class _StyleDetailSheet extends StatelessWidget {
                           Expanded(
                             child: Text(
                               style.name,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 26,
                                 fontWeight: FontWeight.w800,
                                 color: AppTheme.charcoal,
@@ -815,12 +815,12 @@ class _StyleDetailSheet extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              const Icon(Icons.star_rounded,
+                              Icon(Icons.star_rounded,
                                   color: AppTheme.sunGlow, size: 20),
                               const SizedBox(width: 4),
                               Text(
                                 style.popularity.toStringAsFixed(1),
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,
                                   color: AppTheme.charcoal,
@@ -882,7 +882,7 @@ class _StyleDetailSheet extends StatelessWidget {
                       const SizedBox(height: 24),
 
                       // Tags
-                      const Text(
+                      Text(
                         'Style Tags',
                         style: TextStyle(
                           fontSize: 16,
@@ -907,7 +907,7 @@ class _StyleDetailSheet extends StatelessWidget {
                             ),
                             child: Text(
                               tag,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: AppTheme.mossGreen,
                                 fontSize: 13,
                                 fontWeight: FontWeight.w500,
@@ -920,7 +920,7 @@ class _StyleDetailSheet extends StatelessWidget {
                       const SizedBox(height: 24),
 
                       // Key Features
-                      const Text(
+                      Text(
                         'Key Features',
                         style: TextStyle(
                           fontSize: 16,
@@ -940,7 +940,7 @@ class _StyleDetailSheet extends StatelessWidget {
                                   color: AppTheme.mintGreen.withValues(alpha: 0.15),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: const Icon(
+                                child: Icon(
                                   Icons.check_rounded,
                                   color: AppTheme.mossGreen,
                                   size: 14,
@@ -980,12 +980,12 @@ class _StyleDetailSheet extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Icon(Icons.auto_awesome_rounded,
-                                  color: Colors.white, size: 20),
+                                  color: AppTheme.charcoal, size: 20),
                               SizedBox(width: 10),
                               Text(
                                 'Apply This Style',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: AppTheme.charcoal,
                                   fontSize: 17,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -1095,7 +1095,7 @@ Widget _styleImage(String path,
         width: width,
         height: height,
         color: AppTheme.slate.withValues(alpha: 0.1),
-        child: const Icon(Icons.image, color: AppTheme.slate),
+        child: Icon(Icons.image, color: AppTheme.slate),
       ),
     );
   }
@@ -1108,7 +1108,7 @@ Widget _styleImage(String path,
       width: width,
       height: height,
       color: AppTheme.slate.withValues(alpha: 0.1),
-      child: const Icon(Icons.broken_image, color: AppTheme.slate),
+      child: Icon(Icons.broken_image, color: AppTheme.slate),
     ),
   );
 }

@@ -83,7 +83,7 @@ class ParallaxButton extends StatelessWidget {
                         Text(
                           subLabel.toUpperCase(),
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: Colors.white70,
+                            color: AppTheme.charcoal.withValues(alpha: 0.7),
                             letterSpacing: 1.2,
                             fontWeight: FontWeight.w800,
                           ),
@@ -94,7 +94,7 @@ class ParallaxButton extends StatelessWidget {
                     Text(
                       label,
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Colors.white,
+                        color: AppTheme.charcoal,
                         fontWeight: FontWeight.w900,
                         fontSize: 24,
                       ),
@@ -119,7 +119,7 @@ class ParallaxButton extends StatelessWidget {
                       )
                     ]
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.add_rounded,
                     color: AppTheme.mossGreen,
                     size: 24,

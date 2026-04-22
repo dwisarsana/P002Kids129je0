@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../../theme/app_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../models/kids_room_model.dart';
@@ -111,8 +112,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                     children: [
                                       Text(
                                         kidsRoom.styleName,
-                                        style: const TextStyle(
-                                          color: Colors.white,
+                                        style: TextStyle(
+                                          color: AppTheme.charcoal,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
                                         ),
